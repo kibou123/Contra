@@ -19,14 +19,15 @@ int WINAPI WinMain(HINSTANCE Hins, HINSTANCE HIns, LPTSTR a, int c)
 	game.InitDT();
 	//Biến thời gian
 	LARGE_INTEGER startTime;
-	LARGE_INTEGER frequence;
+	double frequence;
 	float frameTime = 1.0f / FPS;
 	float gameTime = 0;
 	LARGE_INTEGER endTime;
 	float delay = 0;
 	ZeroMemory(&Msg, sizeof(Msg));
-	QueryPerformanceFrequency(&frequence);//Hàm trả gái trị đúng
-	QueryPerformanceCounter(&endTime);
+	QueryPerformanceFrequency(&startTime);//Hàm trả gái trị đúng
+	frequence = double(startTime.QuadPart);
+	QueryPerformanceCounter(&startTime);
 
 	//Render
 	while (Msg.message != WM_QUIT)
@@ -38,23 +39,17 @@ int WINAPI WinMain(HINSTANCE Hins, HINSTANCE HIns, LPTSTR a, int c)
 		}
 		else
 		{
-			QueryPerformanceCounter(&startTime);
 			QueryPerformanceCounter(&endTime);
-			gameTime += ((float)endTime.QuadPart - (float)startTime.QuadPart) / (float)frequence.QuadPart;
-			if (gameTime >= frameTime)
+			gameTime = double(endTime.QuadPart - startTime.QuadPart) / frequence;
+			if (gameTime < frameTime)
 			{
-				game.Update(gameTime);
-				game.Render();
-				gameTime = 0;
-			}
-			else
-			{
-				Sleep(frameTime - gameTime);
+				Sleep((frameTime - gameTime) * 1000);//Ngủ theo second
 				gameTime = frameTime;
 			}
-
+			QueryPerformanceCounter(&startTime);
+			game.Update(gameTime);
+			game.Render();
 		}
 	}
-	//game.Delete();
 	return 0;
 }
