@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+	<Textures textureId="player_png">
+    		<Sprite id="0_stand" x="0" y="0"  w="23" h="41"/>
+			<Sprite id="1_run" x="25" y="0"  w="50" h="41"/>
+			<Sprite id="2_run" x="0" y="0"  w="23" h="41"/>
+	</Textures>
