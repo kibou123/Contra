@@ -13,9 +13,13 @@ Map::Map()
 	WidthMap = info->width * info->tileWidth;
 	HeightMap = info->height * info->tileHeight;
 
+	RECT boundMap = { 0, HeightMap, WidthMap, 0 };
+
 	//Thêm vùng di chuyển của view
-	Viewport* viewport = ObjectManager::GetInstance()->GetViewPort();
-	viewport->RectView = {0, HeightMap, WidthMap, 0};
+	ObjectManager::GetInstance()->GetViewPort()->RectView = boundMap;;
+
+	//Tạo cây nhị phân theo bound map
+	this->Tree = new BinaryTree(boundMap, HeightMap - WidthMap > 0);
 
 	// Tạo object
 	objectTag["Wall"] = OWall::Wall;
@@ -27,9 +31,13 @@ Map::Map()
 		for (int j = 0; j < info->ObjectGroups.at(i)->NumOnjects; j++)
 		{
 			MapObject* mapObject = info->ObjectGroups.at(i)->Objects.at(j);
-			CreateObject(mapObject);
+			Object* obj = CreateObject(mapObject);
+			//Thêm object vào cây nhị phân
+			this->Tree->insertObject(obj);
 		}
 	}
+
+	this->Tree->LogAllObject();
 }
 
 Map::~Map()
@@ -95,7 +103,7 @@ Object* Map::CreateObject(MapObject* _mapobject)
 	obj->Init(pos, objectTag[_mapobject->name], _mapobject->kind);
 	obj->SetPositionStart(pos);
 	obj->GetBound(_mapobject->width, _mapobject->height);
-
+	obj->SetName(_mapobject->name);
 	ListObject.push_back(obj);
 	return obj;
 }

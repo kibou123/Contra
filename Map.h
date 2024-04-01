@@ -3,6 +3,7 @@
 #include "TileSet.h"
 #include "GameDefine.h"
 #include "InfoMap.h"
+#include "BinaryTree.h"
 #include "Water.h"
 #include "OEnemy.h"
 
@@ -18,6 +19,8 @@ public:
 	InfoMap *info;
 	map<string, int> objectTag;
 	vector <Object*> ListObject;
+
+	BinaryTree* Tree;
 public:
 	Map();
 	~Map();

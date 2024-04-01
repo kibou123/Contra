@@ -28,6 +28,9 @@
     <Filter Include="Object\Enemy">
       <UniqueIdentifier>{46e3e84f-f410-4f84-a244-20d3f7fbdf7c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Map\InfoMap">
+      <UniqueIdentifier>{29fc22f1-6f86-4cb9-b085-1f3dc5394e19}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TinyXML\tinystr.cpp">
@@ -63,9 +66,6 @@
     <ClCompile Include="Sprite.cpp">
       <Filter>Global</Filter>
     </ClCompile>
-    <ClCompile Include="InfoMap.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
     <ClCompile Include="Object.cpp">
       <Filter>Object</Filter>
     </ClCompile>
@@ -74,9 +74,6 @@
     </ClCompile>
     <ClCompile Include="Viewport.cpp">
       <Filter>Global</Filter>
-    </ClCompile>
-    <ClCompile Include="TileSet.cpp">
-      <Filter>Map</Filter>
     </ClCompile>
     <ClCompile Include="Map.cpp">
       <Filter>Map</Filter>
@@ -103,12 +100,6 @@
     <ClCompile Include="DrawString.cpp">
       <Filter>Global\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="MapObject.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
-    <ClCompile Include="MapObjectGroup.cpp">
-      <Filter>Map</Filter>
-    </ClCompile>
     <ClCompile Include="debug.cpp">
       <Filter>Global</Filter>
     </ClCompile>
@@ -120,6 +111,21 @@
     </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Object\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="BinaryTree.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="MapObject.cpp">
+      <Filter>Map\InfoMap</Filter>
+    </ClCompile>
+    <ClCompile Include="MapObjectGroup.cpp">
+      <Filter>Map\InfoMap</Filter>
+    </ClCompile>
+    <ClCompile Include="InfoMap.cpp">
+      <Filter>Map\InfoMap</Filter>
+    </ClCompile>
+    <ClCompile Include="TileSet.cpp">
+      <Filter>Map\InfoMap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -150,9 +156,6 @@
     <ClInclude Include="Sprite.h">
       <Filter>Global</Filter>
     </ClInclude>
-    <ClInclude Include="InfoMap.h">
-      <Filter>Map</Filter>
-    </ClInclude>
     <ClInclude Include="Object.h">
       <Filter>Object</Filter>
     </ClInclude>
@@ -164,9 +167,6 @@
     </ClInclude>
     <ClInclude Include="Viewport.h">
       <Filter>Global</Filter>
-    </ClInclude>
-    <ClInclude Include="TileSet.h">
-      <Filter>Map</Filter>
     </ClInclude>
     <ClInclude Include="Map.h">
       <Filter>Map</Filter>
@@ -193,12 +193,6 @@
     <ClInclude Include="DrawString.h">
       <Filter>Global\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="MapObject.h">
-      <Filter>Map</Filter>
-    </ClInclude>
-    <ClInclude Include="MapObjectGroup.h">
-      <Filter>Map</Filter>
-    </ClInclude>
     <ClInclude Include="debug.h">
       <Filter>Global</Filter>
     </ClInclude>
@@ -207,6 +201,21 @@
     </ClInclude>
     <ClInclude Include="OEnemy.h">
       <Filter>Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="BinaryTree.h">
+      <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="MapObjectGroup.h">
+      <Filter>Map\InfoMap</Filter>
+    </ClInclude>
+    <ClInclude Include="MapObject.h">
+      <Filter>Map\InfoMap</Filter>
+    </ClInclude>
+    <ClInclude Include="InfoMap.h">
+      <Filter>Map\InfoMap</Filter>
+    </ClInclude>
+    <ClInclude Include="TileSet.h">
+      <Filter>Map\InfoMap</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
