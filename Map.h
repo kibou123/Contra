@@ -3,7 +3,8 @@
 #include "TileSet.h"
 #include "GameDefine.h"
 #include "InfoMap.h"
-#include "OWall.h"
+#include "Water.h"
+#include "OEnemy.h"
 
 using namespace Define;
 
@@ -17,7 +18,6 @@ public:
 	InfoMap *info;
 	map<string, int> objectTag;
 	vector <Object*> ListObject;
-	vector <RECT> ListWallView;
 public:
 	Map();
 	~Map();

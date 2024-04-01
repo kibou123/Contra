@@ -11,9 +11,9 @@
 		<Sprite id="8_jumping3" x="157" y="45"  w="16" h="20"/>
 		<Sprite id="9_jumping4" x="175" y="48"  w="19" h="16"/>
 		<Sprite id="10_sitting1" x="84" y="49"  w="32" h="16"/>
-		<Sprite id="11_die" x="61" y="121"  w="32" h="10"/>
-		<Sprite id="12_dying_1" x="95" y="118"  w="16" h="13"/>
-		<Sprite id="13_dying_1" x="113" y="124"  w="16" h="7"/>
+		<Sprite id="11_dying" x="61" y="121"  w="32" h="10"/>
+		<Sprite id="12_diving_1" x="95" y="118"  w="16" h="13"/>
+		<Sprite id="13_diving_1" x="113" y="124"  w="16" h="7"/>
 		<Sprite id="14_swimming_stand" x="192" y="114"  w="25" h="16"/>
 		<Sprite id="15_swimming_run" x="131" y="116"  w="16" h="15"/>
 		<Sprite id="16_swimming_fire_stand" x="170" y="104"  w="17" h="27"/>

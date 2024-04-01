@@ -15,7 +15,7 @@ public:
 	Player* player;
 	Object* _obj;
 	D3DXVECTOR2 _side;
-	bool isGround, isCollisionTop;
+	bool isGround;
 public:
 	PlayerCollision();
 	~PlayerCollision();
@@ -25,6 +25,7 @@ public:
 	void PlayCollisionF();
 
 	void StandCollision();
+	void JumpCollision();
 	void RunCollision();
 };
 

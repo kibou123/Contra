@@ -4,19 +4,18 @@
 
 using namespace Define;
 
-class OWall : public Object
+class OEnemy : public Object
 {
 public:
-	enum Walltype
+	enum Enemytype
 	{
-		Wall = 100,
-		Water = 200,
-	} _walltype = Walltype::Wall;
+		Soldier = 100,
+	} _enemyType = Enemytype::Soldier;
 
-	OWall();
-	~OWall();
+	OEnemy();
+	~OEnemy();
 
-	void Init(D3DXVECTOR2 pos, int type = Walltype::Wall, int kind = 0);
+	void Init(D3DXVECTOR2 pos, int type = Enemytype::Soldier, int kind = 0);
 	void BeforeUpdate(float gameTime, Keyboard* key);
 	void Update(float gameTime, Keyboard* key);
 	void UpdateAnimation(float gameTime);
@@ -24,4 +23,5 @@ public:
 	D3DXVECTOR2 OnCollision(Object* obj, D3DXVECTOR2 side);
 	void SetBound(float width, float height);
 	void Render(Viewport* viewport);
+	static Animation* GetAnimationEnemy();
 };

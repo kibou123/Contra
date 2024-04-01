@@ -17,7 +17,6 @@ protected:
 	RECT bound;
 	int HP = 0, Damage = 0;
 	string name;
-	float timeCollisionMin;
 public:
 	D3DXVECTOR2 positionStart;
 	//Jump
@@ -32,6 +31,7 @@ public:
 	{
 		Wall,
 		Player,
+		Enemy
 	}Tag;
 
 	enum Stateobject
@@ -42,6 +42,8 @@ public:
 		Attacking = 30,
 		Sitting = 40,
 		Dying = 50,
+		Swimming = 60,
+		Diving = 70,
 	};
 	Stateobject State;
 	Object();

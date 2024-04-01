@@ -10,30 +10,20 @@ Map::Map()
 
 	this->tileset = new TileSet(info->tileCount, info->tileColumns, info->tileWidth, info->tileHeight);
 	position = D3DXVECTOR2(0, 0);
+	WidthMap = info->width * info->tileWidth;
+	HeightMap = info->height * info->tileHeight;
 
+	//Thêm vùng di chuyển của view
+	Viewport* viewport = ObjectManager::GetInstance()->GetViewPort();
+	viewport->RectView = {0, HeightMap, WidthMap, 0};
+
+	// Tạo object
 	objectTag["Wall"] = OWall::Wall;
-
-	//Chạy wallView trước
-	for (int i = 0; i < info->numObjectGroups; i++)
-	{
-		if (info->ObjectGroups.at(i)->name == "WallView")
-		for (int j = 0; j < info->ObjectGroups.at(i)->NumOnjects; j++)
-		{
-			MapObject* mapObject = info->ObjectGroups.at(i)->Objects.at(j);
-			int x = mapObject->x;
-			int y = info->height * info->tileHeight - mapObject->y - mapObject->height;
-			RECT rect = { x, y + mapObject->height, x + mapObject->width , y };
-			Viewport* viewport = ObjectManager::GetInstance()->GetViewPort();
-			viewport->_left = rect.left < viewport->_left ? rect.left : viewport->_left;
-			viewport->_right = rect.right > viewport->_right ? rect.right : viewport->_right;
-			ListWallView.push_back(rect);
-		}
-	}
+	objectTag["Water"] = OWall::Water;
+	objectTag["Soldier"] = OEnemy::Soldier;
 
 	for (int i = 0; i < info->numObjectGroups; i++)
 	{
-		if (info->ObjectGroups.at(i)->name == "WallView") continue;
-		if (info->ObjectGroups.at(i)->name == "View") continue;
 		for (int j = 0; j < info->ObjectGroups.at(i)->NumOnjects; j++)
 		{
 			MapObject* mapObject = info->ObjectGroups.at(i)->Objects.at(j);
@@ -80,6 +70,19 @@ Object* Map::CreateObject(MapObject* _mapobject)
 		{
 		case OWall::Wall:
 			obj = new OWall();
+			break;
+		case OWall::Water:
+			obj = new Water();
+			break;
+		default:
+			return new Object();
+		}
+		break;
+	case Object::Enemy:
+		switch (objectTag[_mapobject->name])
+		{
+		case OEnemy::Soldier:
+			obj = new OEnemy();
 			break;
 		default:
 			return new Object();

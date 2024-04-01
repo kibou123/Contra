@@ -22,24 +22,29 @@ namespace Define
 
 	//Path
 		//Player
-	const char PlayerPNG[] = "./Resource Files/player_png.png";
+	const char PlayerPNG[] = "./Resource Files/bill_animation.png";
 	const char PlayerXML[] = "./Resource Files/player_info.xml";
 		//Enemy
-	const char EnemyPNG[] = "./Resource Files/enemy_png.png";
-	const char EnemyXML[] = "./Resource Files/enemy_info.xml";
+	const char EnemyPNG[] = "./Resource Files/enemies_animation.png";
+	const char EnemyXML[] = "./Resource Files/enemies_info.xml";
 		//Misc
 	const char MiscPNG[] = "./Resource Files/misc_png.png";
 	const char MiscXML[] = "./Resource Files/misc_info.xml";
 
 		//Map
-	const char TileSetPNG[] = "./Resource Files/MapTile.png";
+	const char TileSetPNG[] = "./Resource Files/TitleSetMap1.png";
 	const char MapXML[] = "./Resource Files/Map1.tmx";
+
+		
 
 	//Player
 	const int StartLive = 3;
 	const float timeEnd = 3;
 
 	//PlayerRun
-	const float RunSpeed = 1.0f;
-	const float Gravity = -1.75f;
+	const float RunSpeed = 100.0f;
+	const float Gravity = -200.0f;
+
+	//Enemy
+	const float EnemySpeed = 100.0f;
 }

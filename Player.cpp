@@ -33,7 +33,14 @@ Animation::DataAnimMap dataM()
 	Animation::DataAnimMap data;
 	//Small
 	data[Player::Blue + Object::Standing] = { 0, 0 };
-	data[Player::Blue + Object::Running] = { 1, 2, 2 };
+	data[Player::Blue + Object::Running] = { 1, 5};
+	data[Player::Blue + Object::Jumping] = { 6, 9};
+	data[Player::Blue + Object::Sitting] = { 10, 10 };
+	data[Player::Blue + Object::Dying] = { 11, 11 };
+	data[Player::Blue + Object::Diving] = { 12, 13 };
+	data[Player::Blue + Object::Swimming] = { 15, 15 };
+
+
 	return data;
 }
 
@@ -55,13 +62,12 @@ void Player::Init()
 	Animation::DataAnimMap data = dataM();
 	_anim = new Animation(PlayerXML, PlayerPNG);
 	_anim->SetDataAnimation(data);
-	SetBound(20, 40);
+	SetBound(20, 35);
 }
 
 void Player::BeforeUpdate(float gameTime, Keyboard* key)
 {
 	_playerCollision->isGround = false;
-	_playerCollision->isCollisionTop = false;
 
 	this->SetBound(Width, Height);
 	//Check handler controller
@@ -90,6 +96,8 @@ void Player::OnCollision(Object* obj)
 
 void Player::Update(float gameTime, Keyboard* key)
 {
+	if (!_playerCollision->isGround) State = Object::Jumping;
+
 	//Update Animation
 	UpdateAnimation(gameTime);
 
@@ -129,6 +137,6 @@ void Player::Render(Viewport* viewport)
 		_anim->Render(viewport);
 	}
 
-	//GUI::GetInstance()->Render("Life: ", { 150, 200, 200, 235 });
-	//GUI::GetInstance()->Render(_life, { 210, 200, 230, 235 });
+	GUI::GetInstance()->Render("State: ", { 150, 200, 200, 235 });
+	GUI::GetInstance()->Render(State, { 210, 200, 230, 235 });
 }
