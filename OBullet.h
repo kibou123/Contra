@@ -17,6 +17,7 @@ public:
 	~OBullet();
 
 	void Init(int acceleration, D3DXVECTOR2 pos, int type = Bullettype::NoneBullet, int kind = 0);
+	void Reset();
 	void BeforeUpdate(float gameTime, Keyboard* key);
 	void Update(float gameTime, Keyboard* key);
 	void UpdateAnimation(float gameTime);

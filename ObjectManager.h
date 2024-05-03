@@ -17,10 +17,11 @@ protected:
 	Viewport* viewport;
 	Map* map;
 
-	float pauseTime;
+	float pauseTime, fixTime;
 	vector <Object*> mCurrList;
 public:
 	bool isPause;
+	bool IsFixTime = false;
 
 	ObjectManager();
 	~ObjectManager();
@@ -33,6 +34,7 @@ public:
 	void StartPause(float time);
 	Viewport* GetViewPort();
 	void AddObjectMap(Object* obj);
+	void DeleteObjectMap(Object* obj);
 	//Vẽ Object lên màn hình
 	void Render();
 };

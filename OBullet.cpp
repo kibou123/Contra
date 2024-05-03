@@ -1,6 +1,5 @@
 ﻿#include "OBullet.h"
 #include "Player.h"
-#include "ObjectManager.h"
 
 Animation* OBullet::GetAnimationBullet()
 {
@@ -18,6 +17,8 @@ Animation* OBullet::GetAnimationBullet()
 
 OBullet::OBullet()
 {
+	_anim = GetAnimationBullet();
+	Tag = Object::Bullet;
 }
 
 OBullet::~OBullet()
@@ -28,9 +29,7 @@ OBullet::~OBullet()
 void OBullet::Init(int acceleration, D3DXVECTOR2 pos, int _type, int kind)
 {
 	AllowDraw = true;
-	Tag = Object::Bullet;
 
-	_anim = GetAnimationBullet();
 	_bulletType = (Bullettype)_type;
 	_kind = kind;
 	position = pos;
@@ -41,8 +40,16 @@ void OBullet::Init(int acceleration, D3DXVECTOR2 pos, int _type, int kind)
 	HP = 1;
 	Damage = 1;
 	type = _type;
+}
 
-	ObjectManager::GetInstance()->AddObjectMap(this);
+void OBullet::Reset()
+{
+	AllowDraw = false;
+	SetState(Object::Dying);
+	this->SetBound(0, 0);
+	timeDead = 0;
+	HP = 1;
+	Damage = 0;
 }
 
 void OBullet::Controller()
@@ -91,7 +98,7 @@ void OBullet::Update(float gameTime, Keyboard* key)
 		this->SetVelocity(0, 0);
 		timeDead += gameTime;
 		if (timeDead > 0.2)
-			AllowDraw = false;
+			Reset();
 	}
 
 	UpdateAnimation(gameTime);

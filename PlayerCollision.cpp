@@ -9,6 +9,9 @@ PlayerCollision::PlayerCollision()
 	_functionMap[Object::Running] = &PlayerCollision::RunCollision;
 	_functionMap[Object::Jumping] = &PlayerCollision::JumpCollision;
 	_functionMap[Object::Sitting] = &PlayerCollision::StandCollision;
+	_functionMap[Object::Falling] = &PlayerCollision::JumpCollision;
+	_functionMap[Object::Diving] = &PlayerCollision::StandCollision;
+	_functionMap[Object::Swimming] = &PlayerCollision::StandCollision;
 }
 
 PlayerCollision::~PlayerCollision()
@@ -44,19 +47,19 @@ void PlayerCollision::CheckCollisionWall(Object* _wall)
 	switch (wall->_walltype)
 	{
 	case OWall::Wall:
-		if (_side.y == Collision::BOTTOM && player->State == Object::Jumping)
+		if (_side.y == Collision::BOTTOM && (player->State == Object::Jumping || player->State == Object::Falling))
 		{
 			player->State = Object::Standing;
 		}
 		if (wall->_kind == 0 && player->isFall &&
 			_side.y == Collision::BOTTOM && player->State == Object::Sitting)
 		{
-			player->State = Object::Jumping;
+			player->State = Object::Falling;
 			player->SetPositionY(player->GetPosition().y - 2);
 		}
 		break;
 	case OWall::Water:
-		if (_side.y == Collision::BOTTOM && player->State == Object::Jumping)
+		if (_side.y == Collision::BOTTOM)
 		{
 			player->State = Object::Swimming;
 		}

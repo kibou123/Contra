@@ -3,6 +3,7 @@
 #include "Animation.h"
 #include "Collision.h"
 #include "DrawLine.h"
+#pragma warning(disable : 4996)
 
 class Object
 {
@@ -46,6 +47,7 @@ public:
 		Dying = 50,
 		Swimming = 60,
 		Diving = 70,
+		Falling = 80,
 	};
 	Stateobject State;
 	Object();
@@ -125,6 +127,39 @@ public:
 	{
 		velocity.x += x;
 		velocity.y += y;
+	}
+
+	void StartJump(float speed, float max = 16, float gravity = Gravity)
+	{
+		isAllowJump = true;
+		isFall = false;
+		this->gravity = gravity;
+		speedJump = speed;
+		maxJump = max;
+		State = Object::Jumping;
+		JumpState();
+	}
+
+	virtual void JumpState();
+
+	static void Log(string log)
+	{
+		char _text[100];
+		strcpy(_text, log.c_str()); OutputDebugString(_text);
+	}
+	static void Log(int num)
+	{
+		char _text[100];
+		itoa(num, _text, 10);
+		OutputDebugString(_text);
+		OutputDebugString("\n");
+	}
+	static void Log(float num)
+	{
+		char _text[100];
+		itoa(num, _text, 10);
+		OutputDebugString(_text);
+		OutputDebugString("\n");
 	}
 };
 

@@ -35,14 +35,23 @@ Animation::DataAnimMap dataM()
 	//Small
 	data[Player::Blue + Object::Standing] = { 0, 0 };
 	data[Player::Blue + Object::Standing + 1] = { 48, 48 };
+
 	data[Player::Blue + Object::Running] = { 1, 6 };
+	data[Player::Blue + Object::Running + 1] = { 1, 6 };
+
 	data[Player::Blue + Object::Jumping] = { 7, 10 };
+	data[Player::Blue + Object::Jumping + 1] = { 7, 10 };
+
 	data[Player::Blue + Object::Sitting] = { 11, 11 };
 	data[Player::Blue + Object::Sitting + 1] = { 12, 12 };
+
 	data[Player::Blue + Object::Dying] = { 44, 47 };
+
 	data[Player::Blue + Object::Diving] = { 36, 37 };
+
 	data[Player::Blue + Object::Swimming] = { 34, 35, 150 };
 	data[Player::Blue + Object::Swimming + 1] = { 38, 39, 150 };
+	data[Player::Blue + Object::Falling] = { 0, 0 };
 
 
 	return data;
@@ -59,8 +68,9 @@ void Player::Init()
 	_playerType = Player::Blue;
 	position = positionStart;
 	velocity = D3DXVECTOR2(0, 0);
-	SetState(Object::Standing);
+	StartJump(-10);
 	HP = 1;
+	maxBullet = 4;
 	type = _playerType;
 
 	Animation::DataAnimMap data = dataM();
@@ -100,7 +110,7 @@ void Player::OnCollision(Object* obj)
 
 void Player::Update(float gameTime, Keyboard* key)
 {
-	if (!_playerCollision->isGround) State = Object::Jumping;
+	if (!_playerCollision->isGround && State != Object::Jumping) State = Object::Falling;
 
 	//Update Animation
 	UpdateAnimation(gameTime);
@@ -109,9 +119,9 @@ void Player::Update(float gameTime, Keyboard* key)
 
 	for (size_t i = 0; i < ListBullet.size(); i++)
 	{
-		if (abs(positionStart.x - ListBullet.at(i)->GetPosition().x) > GameWidth/2 || ListBullet.at(i)->GetState() == Object::Dying)
+		if (abs(ListBullet.at(i)->positionStart.x - ListBullet.at(i)->GetPosition().x) > GameWidth)
 		{
-			ListBullet.erase(std::next(ListBullet.begin(), i));
+			ListBullet.at(i)->Reset();
 		}
 	}
 }

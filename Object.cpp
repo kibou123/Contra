@@ -1,6 +1,6 @@
 ﻿#include "Object.h"
-#include "OWall.h"
 #include "Player.h"
+#include "ObjectManager.h"
 
 Object::Object()
 {
@@ -305,4 +305,33 @@ Object::Stateobject Object::GetState()
 void Object::SetState(Stateobject _stateObject)
 {
 	State = _stateObject;
+}
+
+//Trạng thái nhảy
+void Object::JumpState()
+{
+	if (isAllowJump)
+	{
+		posYStartJump = position.y;
+		isFall = false;
+	}
+	isAllowJump = false;
+
+	//Fall
+	if (!isFall && (position.y - posYStartJump >= maxJump))
+	{
+		isFall = true;
+		velocity.y = speedJump;
+	}
+
+	if (isFall)
+	{
+		float fallAc = ObjectManager::GetInstance()->IsFixTime ? Gravity/10 : 0;
+		velocity.y += fallAc; //trừ vận tốc sẽ nhảy nhẹ 1 đoạn
+		velocity.y = velocity.y < -50 ? gravity : velocity.y;
+		return;
+	}
+	//JumpUP
+	SetVelocityY(speedJump);
+
 }

@@ -1,12 +1,14 @@
 ﻿#include "PlayerController.h"
 #include "Player.h"
 #include "Obullet.h"
+#include "ObjectManager.h"
 
 PlayerController::PlayerController()
 {
 	player = Player::GetInstance();
 	player->SetState(Object::Standing);
 	isAttack = false;
+	isReload = false;
 
 	_functionMap[Object::Standing] = &PlayerController::StandState;
 	_functionMap[Object::Running] = &PlayerController::StandState;
@@ -15,6 +17,7 @@ PlayerController::PlayerController()
 	_functionMap[Object::Sitting] = &PlayerController::SitState;
 	_functionMap[Object::Swimming] = &PlayerController::SwimState;
 	_functionMap[Object::Diving] = &PlayerController::DivingState;
+	_functionMap[Object::Falling] = &PlayerController::JumpState;
 }
 
 PlayerController::~PlayerController()
@@ -29,8 +32,7 @@ void PlayerController::StandState() //reset all state
 
 	if (key->IsKeyDown(Dik_JUMP))
 	{
-		JumpState();
-		player->SetVelocityY(-Gravity);
+		player->StartJump(-Gravity);
 		return;
 	}
 
@@ -53,9 +55,8 @@ void PlayerController::Fall()
 //Trạng thái nhảy
 void PlayerController::JumpState()
 {
-	player->State = Object::Jumping;
 	player->SetBound(20, 20);
-	player->SetVelocityY(player->GetVelocity().y + Gravity/25);
+	player->JumpState();
 }
 
 //Trạng thái chêt
@@ -88,12 +89,6 @@ void PlayerController::SwimState()
 {
 	player->State = Object::Swimming;
 	player->SetBound(25, 16);
-	//if (key->IsKeyDown(Dik_JUMP))
-	//{
-	//	JumpState();
-	//	player->SetVelocityY(-Gravity);
-	//	return;
-	//}
 
 	if (key->IsKeyDown(Dik_DOWN))
 	{
@@ -105,7 +100,7 @@ void PlayerController::SwimState()
 void PlayerController::DivingState()
 {
 	player->State = Object::Diving;
-	player->SetBound(25, 10);
+	player->SetBound(1, 1);
 	if (key->GIsKeyUp(Dik_DOWN))
 	{
 		SwimState();
@@ -148,7 +143,8 @@ void PlayerController::PlayControllerF()
 
 void PlayerController::Update(float gameTime, Keyboard* key)
 {
-	isAttack = false;
+	if (player->State == Object::Dying) return;
+
 	this->key = key;
 	MoveX();
 	if (player->State != Object::Jumping) {
@@ -156,34 +152,71 @@ void PlayerController::Update(float gameTime, Keyboard* key)
 	}
 
 	this->PlayControllerF();
+	timeReload += gameTime;
 
+	AttackState();
+}
+
+void PlayerController::AttackState()
+{
+	if (player->State == Object::Diving) return;
+	//
 	if (key->GIsKeyUp(Dik_ATTACK))
 	{
 		//Tạo Đạn Theo Súng
 		isAllowAttack = true;
 	}
-
-	if (isAllowAttack && key->IsKeyDown(Dik_ATTACK))
+	if (isAttack && timeReload > 0.15)
 	{
-		if (player->ListBullet.size() >= 2)
+		isAttack = false;
+	}
+	//
+	if (player->ListBullet.size() == 0)
+		for (int i = 0; i < 11; i++)//tạo 10 viên đạn trước cho khỏi lag
 		{
-			return;
+			OBullet* bullet = new OBullet();
+			bullet->Reset();
+			player->ListBullet.push_back(bullet);
+			ObjectManager::GetInstance()->AddObjectMap(bullet);
 		}
 
+	OBullet* bullet = NULL;
+	int count = 0;
+	for (size_t i = 0; i < player->ListBullet.size(); i++)
+	{
+		if (player->ListBullet[i]->GetAllowDraw() == false)
+		{
+			bullet = player->ListBullet[i];
+		}
+		else
+		{
+			count++;
+		}
+	}
+
+	if (bullet == NULL || count >= player->maxBullet)
+	{
+		return;
+	}
+
+	float timeR = isReload ? 0.1 : 0.2;//ăn đạn R thì bắn nhanh hơn
+	if (isAllowAttack && key->IsKeyDown(Dik_ATTACK) && (timeReload > timeR - 0.05))
+	{
+		timeReload = 0;
 		isAllowAttack = false;
+
 		isAttack = true;
-		OBullet* bullet = new OBullet();
+
 		//Khong flip
 		int	acc = 1;
 		D3DXVECTOR2 pos = player->GetPosition();
 		pos.x = player->GetBound().right;
-		pos.y = player->GetBound().top- player->GetHeight()/2;
+		pos.y = player->GetBound().top - player->GetHeight() / 2;
 		if (player->isFlip)
 		{
 			acc = -1;
 			pos.x = player->GetBound().left;
 		}
 		bullet->Init(acc, pos, 200);
-		player->ListBullet.push_back(bullet);
 	}
 }

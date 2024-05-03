@@ -21,6 +21,7 @@ public:
 	int _life;
 	bool isImmortal = false;
 	float immortalTime = 0;
+	float maxBullet = 4;
 
 	vector <OBullet*> ListBullet;
 	vector <Object*> ItemBullet;

@@ -40,6 +40,13 @@ void ObjectManager::InitDT()
 //Update Game
 void ObjectManager::Update(float gameTime, Keyboard* key)
 {
+	fixTime += gameTime;
+	IsFixTime = false;
+	if (fixTime > 0.05)
+	{
+		IsFixTime = true;
+		fixTime = 0;
+	}
 	//
 	if (key->IsKeyDown(Dik_START))
 	{
@@ -94,6 +101,15 @@ void ObjectManager::AddObjectMap(Object* obj)
 	map->ListObject.push_back(obj);
 }
 
+void ObjectManager::DeleteObjectMap(Object* obj)
+{
+	auto it = std::find(map->ListObject.begin(), map->ListObject.end(), obj);
+	if (it != map->ListObject.end())
+	{
+		map->ListObject.erase(it);
+	}
+}
+
 Viewport* ObjectManager::GetViewPort()
 {
 	return viewport;
@@ -103,11 +119,12 @@ Viewport* ObjectManager::GetViewPort()
 void ObjectManager::Render()
 {
 	//Vẽ map
-	map->Render(viewport);
+	//map->Render(viewport);
 	//Vẽ
 	for (size_t i = 0; i < map->ListObject.size(); i++)
 	{
 		map->ListObject.at(i)->Render(viewport);
+		DrawLine::GetInstance()->SetColor(map->ListObject.at(i)->Tag*70, map->ListObject.at(i)->type * 50, map->ListObject.at(i)->_kind * 80);
 		DrawLine::GetInstance()->DrawRect(map->ListObject.at(i)->GetBound());
 	}
 
