@@ -18,11 +18,11 @@ void Object::Init(D3DXVECTOR2 pos, int _type, int kind)
 
 bool Object::GetFlipFlag()
 {
-	return FlipFlag;
+	return isFlip;
 }
 void Object::SetFlipFlag(bool flag)
 {
-	FlipFlag = flag;
+	isFlip = flag;
 }
 //Khung va chạm
 RECT Object::GetBound()
@@ -231,7 +231,7 @@ void Object::OnCollision(Object *obj, float gameTime)
 					{
 						//Đụng đáy thì đi lên tường
 						if (side.y == Collision::BOTTOM)
-							side = D3DXVECTOR2(Collision::NONE, side.y);
+							side = D3DXVECTOR2(Collision::NONE, Collision::BOTTOM);
 						else
 						{
 							side = D3DXVECTOR2(Collision::NONE, Collision::NONE);

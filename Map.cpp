@@ -16,6 +16,9 @@ Map::Map()
 	RECT boundMap = { 0, HeightMap, WidthMap, 0 };
 
 	//Thêm vùng di chuyển của view
+	Viewport* viewport = ObjectManager::GetInstance()->GetViewPort();
+	viewport->RectView = {0, HeightMap, WidthMap, 0};
+
 	ObjectManager::GetInstance()->GetViewPort()->RectView = boundMap;;
 
 	//Tạo cây nhị phân theo bound map
@@ -25,6 +28,7 @@ Map::Map()
 	objectTag["Wall"] = OWall::Wall;
 	objectTag["Water"] = OWall::Water;
 	objectTag["Soldier"] = OEnemy::Soldier;
+	objectTag["rifleman"] = OEnemy::rifleman;
 
 	for (int i = 0; i < info->numObjectGroups; i++)
 	{
@@ -33,9 +37,10 @@ Map::Map()
 			MapObject* mapObject = info->ObjectGroups.at(i)->Objects.at(j);
 			Object* obj = CreateObject(mapObject);
 			//Thêm object vào cây nhị phân
-			this->Tree->insertObject(obj);
+			//this->Tree->insertObject(obj);
 		}
 	}
+
 
 	this->Tree->LogAllObject();
 }
@@ -54,10 +59,6 @@ Map::~Map()
 	}
 }
 
-void Map::Update(float gameTime)
-{
-
-}
 
 Object* Map::CreateObject(MapObject* _mapobject)
 {
@@ -92,6 +93,9 @@ Object* Map::CreateObject(MapObject* _mapobject)
 		case OEnemy::Soldier:
 			obj = new OEnemy();
 			break;
+		case OEnemy::rifleman:
+			obj = new OEnemy();
+			break;
 		default:
 			return new Object();
 		}
@@ -103,7 +107,9 @@ Object* Map::CreateObject(MapObject* _mapobject)
 	obj->Init(pos, objectTag[_mapobject->name], _mapobject->kind);
 	obj->SetPositionStart(pos);
 	obj->GetBound(_mapobject->width, _mapobject->height);
+
 	obj->SetName(_mapobject->name);
+
 	ListObject.push_back(obj);
 	return obj;
 }

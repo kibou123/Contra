@@ -3,9 +3,9 @@
 #include "TileSet.h"
 #include "GameDefine.h"
 #include "InfoMap.h"
-#include "BinaryTree.h"
 #include "Water.h"
 #include "OEnemy.h"
+#include "BinaryTree.h"
 
 using namespace Define;
 
@@ -27,7 +27,6 @@ public:
 
 	Object* CreateObject(MapObject* _mapobject);
 
-	void Update(float gameTime);
 	void Render(Viewport * view);
 };
 
