@@ -43,6 +43,11 @@ void OEnemy::Init(D3DXVECTOR2 pos, int _type, int kind)
 
 void OEnemy::Controller()
 {
+	if (State == Object::Jumping)
+	{
+		JumpState();
+		return;
+	}
 	velocity.y = Gravity;
 }
 
@@ -55,6 +60,14 @@ D3DXVECTOR2 OEnemy::OnCollision(Object* obj, D3DXVECTOR2 side)
 		{
 			velocity.x = -velocity.x;
 			side.x = Collision::NONE;
+		}
+		if (side.y == Collision::BOTTOM)
+		{
+			SetState(Object::Running);
+			if (position.x < obj->GetBound().left || position.x > obj->GetBound().right)
+			{
+				StartJump(-Gravity/2, 16, Gravity);
+			}
 		}
 		return side;
 	default:
@@ -74,15 +87,17 @@ void OEnemy::BeforeUpdate(float gameTime, Keyboard* key)
 
 void OEnemy::Update(float gameTime, Keyboard* key)
 {
-	if (HP <= 0)
+	if (HP <= 0 && State != Object::Dying)
 	{
+		velocity.x = (Player::GetInstance()->GetFlipFlag()?-1:1)*EnemySpeed;
+		StartJump(-Gravity / 2, 16, Gravity);
 		State = Object::Dying;
 	}
 	//Update Animation
 	if (State == Object::Dying)
 	{
 		this->SetBound(0, 0);
-		this->SetVelocity(0, 0);
+		JumpState();
 		timeDead += gameTime;
 		if (timeDead > 0.2)
 			AllowDraw = false;

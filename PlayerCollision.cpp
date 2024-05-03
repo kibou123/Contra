@@ -47,15 +47,23 @@ void PlayerCollision::CheckCollisionWall(Object* _wall)
 	switch (wall->_walltype)
 	{
 	case OWall::Wall:
-		if (_side.y == Collision::BOTTOM && (player->State == Object::Jumping || player->State == Object::Falling))
+		//
+		if (_side.x != Collision::NONE && wall->_kind == 1)
+		{
+			player->State = Object::Standing;
+			player->SetPositionY(wall->GetBound().top);
+		}
+
+		if (_side.y == Collision::BOTTOM && player->State != Object::Running && player->State != Object::Sitting)
 		{
 			player->State = Object::Standing;
 		}
+		//Rơi
 		if (wall->_kind == 0 && player->isFall &&
 			_side.y == Collision::BOTTOM && player->State == Object::Sitting)
 		{
 			player->State = Object::Falling;
-			player->SetPositionY(player->GetPosition().y - 2);
+			player->SetPositionY(player->GetPosition().y - 1);
 		}
 		break;
 	case OWall::Water:

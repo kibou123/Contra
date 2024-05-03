@@ -143,17 +143,17 @@ void PlayerController::PlayControllerF()
 
 void PlayerController::Update(float gameTime, Keyboard* key)
 {
+	this->key = key;
 	if (player->State == Object::Dying) return;
 
-	this->key = key;
-	MoveX();
 	if (player->State != Object::Jumping) {
 		player->SetVelocityY(Gravity);
 	}
 
 	this->PlayControllerF();
-	timeReload += gameTime;
+	MoveX();
 
+	timeReload += gameTime;
 	AttackState();
 }
 

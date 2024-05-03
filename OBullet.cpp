@@ -77,6 +77,7 @@ void OBullet::OnCollision(Object* obj)
 		velocity.x = 0;
 		this->State = Object::Dying;
 		obj->SetHP(obj->GetHP() - this->Damage);
+		obj->SetVelocityX(velocity.x);
 		break;
 	default:
 		break;
