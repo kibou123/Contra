@@ -30,29 +30,50 @@ Player::~Player()
 
 Animation::DataAnimMap dataM()
 {
+
+	// 1: bắn bình thường
+	// 2: giơ súng lên
+	// 3: giơ súng lên rồi bắn
+	// 4: giơ súng chéo lên
+	// 5: giơ súng chéo lên rồi bắn
+	// 6: giơ súng chéo xuống
+	// 7: giơ súng chéo xuống rồi bắn
+	// 
 	//Tạo Animation
 	Animation::DataAnimMap data;
 	//Small
-	data[Player::Blue + Object::Standing] = { 0, 0 };
-	data[Player::Blue + Object::Standing + 1] = { 48, 48 };
+	data[Player::Blue + Object::Standing] = { 48, 48 };
+	data[Player::Blue + Object::Standing + 1] = { 49, 49 }; // đứng + bắn
+	data[Player::Blue + Object::Standing + 2] = { 12, 12 }; // đứng + up
+	data[Player::Blue + Object::Standing + 3] = { 13, 13 }; // đứng + up + bắn
 
-	data[Player::Blue + Object::Running] = { 1, 6 };
-	data[Player::Blue + Object::Running + 1] = { 1, 6 };
+	data[Player::Blue + Object::Running] = { 0, 5 }; // // Không súng
+	data[Player::Blue + Object::Running + 1] = { 6, 11 }; // súng + ngang
+	data[Player::Blue + Object::Running + 4] = { 16, 18 }; //  súng + chéo + up
+	data[Player::Blue + Object::Running + 5] = { 19, 21 }; //  súng + chéo + up + bắn
+	data[Player::Blue + Object::Running + 6] = { 22, 24 }; //  súng + chéo + down
+	data[Player::Blue + Object::Running + 7] = { 25, 27 }; //  súng + chéo + down + bắn
 
-	data[Player::Blue + Object::Jumping] = { 7, 10 };
-	data[Player::Blue + Object::Jumping + 1] = { 7, 10 };
 
-	data[Player::Blue + Object::Sitting] = { 11, 11 };
-	data[Player::Blue + Object::Sitting + 1] = { 12, 12 };
+	data[Player::Blue + Object::Jumping] = { 28, 31 };
+	data[Player::Blue + Object::Jumping + 1] = { 28, 28 }; // nhảy + bắn
 
-	data[Player::Blue + Object::Dying] = { 44, 47 };
+	data[Player::Blue + Object::Sitting] = { 14, 14 }; // nằm
+	data[Player::Blue + Object::Sitting + 1] = { 15, 15 }; // nằm bắn
 
-	data[Player::Blue + Object::Diving] = { 36, 37 };
 
-	data[Player::Blue + Object::Swimming] = { 34, 35, 150 };
-	data[Player::Blue + Object::Swimming + 1] = { 38, 39, 150 };
-	data[Player::Blue + Object::Falling] = { 0, 0 };
+	data[Player::Blue + Object::Dying] = { 44, 47  };
+	data[Player::Blue + Object::Diving ] = { 41, 42 }; // lặn 
 
+
+	data[Player::Blue + Object::Swimming] = { 33, 34 }; // Bơi
+	data[Player::Blue + Object::Swimming + 1] = { 35, 36 };// Bơi + súng
+	data[Player::Blue + Object::Swimming + 2] = { 39, 39 };// Bơi + súng + thẳng
+	data[Player::Blue + Object::Swimming + 3] = { 40, 40 };// Bơi + súng + thẳng + bắn
+	data[Player::Blue + Object::Swimming + 4] = { 37, 37 };// Bơi + súng + chéo 
+	data[Player::Blue + Object::Swimming + 5] = { 38, 38 };// Bơi + súng + chéo + bắn
+
+	data[Player::Blue + Object::Falling] = {3, 3 };
 
 	return data;
 }
@@ -77,7 +98,7 @@ void Player::Init()
 	Animation::DataAnimMap data = dataM();
 	_anim = new Animation(PlayerXML, PlayerPNG);
 	_anim->SetDataAnimation(data);
-	SetBound(40, 40);
+	SetBound(38, 48);
 }
 
 void Player::BeforeUpdate(float gameTime, Keyboard* key)
