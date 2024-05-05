@@ -7,8 +7,15 @@ Animation* OItem::GetAnimation()
 	//Tạo Animation
 	Animation::DataAnimMap data;
 	// R
-	data[OItem::R + Object::Running] = { 3 , 3 };
-	data[OItem::R + Object::Jumping] = { 4 , 4 };
+	data[OItem::R + Object::Running] = { 0 , 0 };
+	data[OItem::R + Object::Jumping] = { 5 , 5 };
+	data[OItem::F + Object::Jumping] = { 2 , 2 };
+	data[OItem::L + Object::Jumping] = { 3 , 3 };
+	data[OItem::M + Object::Jumping] = { 4 , 4 };
+	data[OItem::S + Object::Jumping] = { 6 , 6 };
+
+	
+
 
 	Animation* _animItem = new Animation(ItemXML, ItemPNG);
 	_animItem->SetDataAnimation(data);

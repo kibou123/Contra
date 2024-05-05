@@ -139,6 +139,9 @@
     <ClCompile Include="FuncItem.cpp">
       <Filter>Object\Item</Filter>
     </ClCompile>
+    <ClCompile Include="RifleMan.cpp">
+      <Filter>Object\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TinyXML\tinystr.h">
@@ -237,6 +240,9 @@
     </ClInclude>
     <ClInclude Include="FuncItem.h">
       <Filter>Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="RifleMan.h">
+      <Filter>Object\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

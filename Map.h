@@ -4,7 +4,7 @@
 #include "GameDefine.h"
 #include "InfoMap.h"
 #include "Water.h"
-#include "OEnemy.h"
+#include "RifleMan.h"
 #include "OItem.h"
 #include "BinaryTree.h"
 

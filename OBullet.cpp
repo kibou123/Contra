@@ -6,8 +6,15 @@ Animation* OBullet::GetAnimationBullet()
 	//Tạo Animation
 	Animation::DataAnimMap data;
 	// Soldier
-	data[OBullet::NormalBullet + Object::Running] = { 14 , 14 };
-	data[OBullet::NormalBullet + Object::Dying] = { 15 , 16 };
+	data[OBullet::NormalBullet + Object::Running] = { 10 , 12 };
+	data[OBullet::RedBullet + Object::Running] = { 13 , 13 };
+	data[OBullet::FBullet + Object::Running] = {14, 14};
+	data[OBullet::LBullet + Object::Running] = { 15, 15 };
+
+	data[OBullet::NormalBullet + Object::Dying] = { 22 , 22};
+	data[OBullet::RedBullet + Object::Dying] = { 22 , 22 };
+	data[OBullet::FBullet + Object::Dying] = { 22, 22 };
+	data[OBullet::LBullet + Object::Dying] = { 22, 22 };
 
 
 	Animation* _anim = new Animation(ItemXML, ItemPNG);
