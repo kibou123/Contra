@@ -18,6 +18,8 @@ Animation* OEnemy::GetAnimationEnemy()
 
 OEnemy::OEnemy()
 {
+	Tag = Object::Enemy;
+	_anim = GetAnimationEnemy();
 }
 
 OEnemy::~OEnemy()
@@ -28,9 +30,7 @@ OEnemy::~OEnemy()
 void OEnemy::Init(D3DXVECTOR2 pos, int _type, int kind)
 {
 	AllowDraw = true;
-	Tag = Object::Enemy;
 
-	_anim = GetAnimationEnemy();
 	_enemyType = (Enemytype)_type;
 	_kind = kind;
 	position = pos;

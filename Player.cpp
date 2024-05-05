@@ -71,8 +71,9 @@ void Player::Init()
 	StartJump(-10);
 	HP = 1;
 	maxBullet = 4;
-	type = _playerType;
+	GunType = 0;
 
+	type = _playerType;
 	Animation::DataAnimMap data = dataM();
 	_anim = new Animation(PlayerXML, PlayerPNG);
 	_anim->SetDataAnimation(data);
@@ -128,7 +129,7 @@ void Player::Update(float gameTime, Keyboard* key)
 
 void Player::UpdateAnimation(float gameTime)
 {
-	_anim->NewAnimationByIndex(_playerType + this->State + _playerController->isAttack);
+	_anim->NewAnimationByIndex(_playerType + this->State + (_playerController->isAttack ? ArrowGun : 0));
 	_anim->SetPosition(D3DXVECTOR2(position.x, position.y + Height / 2));
 	_anim->SetFlipFlag(isFlip);
 	_anim->Update(gameTime);

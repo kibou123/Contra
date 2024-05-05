@@ -17,4 +17,8 @@ void MapObject::ReadXML(TiXmlElement *node,string name)
 	node->QueryFloatAttribute("y", &y);
 	node->QueryFloatAttribute("width", &width);
 	node->QueryFloatAttribute("height", &height);
+	if (node->Attribute("name") != 0)
+	{
+		nameType = node->Attribute("name");
+	}
 }

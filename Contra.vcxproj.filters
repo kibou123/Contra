@@ -31,6 +31,9 @@
     <Filter Include="Object\Bullet">
       <UniqueIdentifier>{bd9caf81-5c2d-4251-abcd-9a7fd486f842}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Item">
+      <UniqueIdentifier>{d2ae748e-a543-41db-9db7-01dfe2e91d7b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TinyXML\tinystr.cpp">
@@ -130,6 +133,12 @@
     <ClCompile Include="BinaryTree.cpp">
       <Filter>Map</Filter>
     </ClCompile>
+    <ClCompile Include="OItem.cpp">
+      <Filter>Object\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="FuncItem.cpp">
+      <Filter>Object\Item</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TinyXML\tinystr.h">
@@ -222,6 +231,12 @@
     </ClInclude>
     <ClInclude Include="BinaryTree.h">
       <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="OItem.h">
+      <Filter>Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="FuncItem.h">
+      <Filter>Object\Item</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

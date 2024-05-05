@@ -7,17 +7,25 @@ using namespace Define;
 class OBullet : public Object
 {
 public:
+	bool IsFire = false;
+	float Angle = 0;
 	enum Bullettype
 	{
 		NoneBullet = 100,
 		NormalBullet = 200,
+		RedBullet = 300,
+		FBullet = 400,
+		LBullet = 500,
+		EnemyBullet = 600,
 	} _bulletType = Bullettype::NoneBullet;
 
 	OBullet();
 	~OBullet();
 
-	void Init(int acceleration, D3DXVECTOR2 pos, int type = Bullettype::NoneBullet, int kind = 0);
+	void Init(int angle, int acceleration, D3DXVECTOR2 pos, int type = Bullettype::NoneBullet, int kind = 0);
+	void Init(int angle, int acceleration, int type = Bullettype::NoneBullet, int kind = 0);
 	void Reset();
+	void Fire(D3DXVECTOR2 pos);
 	void BeforeUpdate(float gameTime, Keyboard* key);
 	void Update(float gameTime, Keyboard* key);
 	void UpdateAnimation(float gameTime);

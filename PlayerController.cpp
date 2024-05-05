@@ -1,7 +1,7 @@
 ﻿#include "PlayerController.h"
 #include "Player.h"
-#include "Obullet.h"
 #include "ObjectManager.h"
+#include "FuncItem.h"
 
 PlayerController::PlayerController()
 {
@@ -161,7 +161,7 @@ void PlayerController::AttackState()
 {
 	if (player->State == Object::Diving) return;
 	//
-	if (key->GIsKeyUp(Dik_ATTACK))
+	if (key->GIsKeyUp(Dik_ATTACK) || player->GunType == OItem::M)
 	{
 		//Tạo Đạn Theo Súng
 		isAllowAttack = true;
@@ -180,21 +180,10 @@ void PlayerController::AttackState()
 			ObjectManager::GetInstance()->AddObjectMap(bullet);
 		}
 
-	OBullet* bullet = NULL;
-	int count = 0;
-	for (size_t i = 0; i < player->ListBullet.size(); i++)
-	{
-		if (player->ListBullet[i]->GetAllowDraw() == false)
-		{
-			bullet = player->ListBullet[i];
-		}
-		else
-		{
-			count++;
-		}
-	}
-
-	if (bullet == NULL || count >= player->maxBullet)
+	vector <OBullet*> listBullet;
+	listBullet.clear();
+	FuncItem::GetBullet(listBullet);
+	if (listBullet.size() == 0)
 	{
 		return;
 	}
@@ -217,6 +206,9 @@ void PlayerController::AttackState()
 			acc = -1;
 			pos.x = player->GetBound().left;
 		}
-		bullet->Init(acc, pos, 200);
+		for (size_t i = 0; i < listBullet.size(); i++)
+		{
+			listBullet[i]->Fire(pos);
+		}
 	}
 }

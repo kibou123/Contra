@@ -5,6 +5,7 @@
 #include "InfoMap.h"
 #include "Water.h"
 #include "OEnemy.h"
+#include "OItem.h"
 #include "BinaryTree.h"
 
 using namespace Define;

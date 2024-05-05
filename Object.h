@@ -25,6 +25,7 @@ public:
 	bool isAllowJump = true, isFall = false;
 	float posYStartJump, velYStartFall, gravity, speedJump, maxJump;
 	float timeDead;
+	int ArrowGun = 1;
 public:
 	int id;
 	int _kind = 0;
@@ -34,7 +35,8 @@ public:
 		Wall,
 		Player,
 		Enemy,
-		Bullet
+		Bullet,
+		Item,
 	}Tag;
 
 	enum Stateobject

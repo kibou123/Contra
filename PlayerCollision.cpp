@@ -29,6 +29,9 @@ void PlayerCollision::OnCollision()
 	case Object::Wall:
 		CheckCollisionWall();
 		break;
+	case Object::Item:
+		_side.x = Collision::NONE; _side.y = Collision::NONE;
+		break;
 	default:
 
 		break;

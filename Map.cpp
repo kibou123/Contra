@@ -29,6 +29,11 @@ Map::Map()
 	objectTag["Water"] = OWall::Water;
 	objectTag["Soldier"] = OEnemy::Soldier;
 	objectTag["rifleman"] = OEnemy::rifleman;
+	objectTag["R"] = OItem::R;
+	objectTag["M"] = OItem::M;
+	objectTag["S"] = OItem::S;
+	objectTag["F"] = OItem::F;
+	objectTag["L"] = OItem::L;
 
 	for (int i = 0; i < info->numObjectGroups; i++)
 	{
@@ -37,7 +42,8 @@ Map::Map()
 			MapObject* mapObject = info->ObjectGroups.at(i)->Objects.at(j);
 			Object* obj = CreateObject(mapObject);
 			//Thêm object vào cây nhị phân
-			//this->Tree->insertObject(obj);
+			if (obj != NULL)
+				this->Tree->insertObject(obj);
 		}
 	}
 
@@ -68,6 +74,7 @@ Object* Map::CreateObject(MapObject* _mapobject)
 
 	Object* obj;
 	Object::tag tagg = Object::GetTag(_mapobject->name);
+	int objectType = objectTag[_mapobject->name];
 	switch (tagg)
 	{
 	case Object::Player:
@@ -75,7 +82,7 @@ Object* Map::CreateObject(MapObject* _mapobject)
 		obj->SetPositionStart(pos);
 		break;
 	case Object::Wall:
-		switch (objectTag[_mapobject->name])
+		switch (objectType)
 		{
 		case OWall::Wall:
 			obj = new OWall();
@@ -84,11 +91,11 @@ Object* Map::CreateObject(MapObject* _mapobject)
 			obj = new Water();
 			break;
 		default:
-			return new Object();
+			return NULL;
 		}
 		break;
 	case Object::Enemy:
-		switch (objectTag[_mapobject->name])
+		switch (objectType)
 		{
 		case OEnemy::Soldier:
 			obj = new OEnemy();
@@ -97,14 +104,30 @@ Object* Map::CreateObject(MapObject* _mapobject)
 			obj = new OEnemy();
 			break;
 		default:
-			return new Object();
+			return NULL;
+		}
+		break;
+	case Object::Item:
+		objectType = objectTag[_mapobject->nameType];
+		switch (objectType)
+		{
+		case OItem::R:
+			obj = new OItem();
+			break;
+		case OItem::M:
+			obj = new OItem();
+		case OItem::S:
+			obj = new OItem();
+			break;
+		default:
+			return NULL;
 		}
 		break;
 	default:
-		return new Object();
+		return NULL;
 	}
 	obj->id = _mapobject->id;
-	obj->Init(pos, objectTag[_mapobject->name], _mapobject->kind); 
+	obj->Init(pos, objectType, _mapobject->kind);
 	obj->SetPositionStart(pos);
 	obj->GetBound(_mapobject->width, _mapobject->height);
 

@@ -133,6 +133,7 @@
     <ClCompile Include="debug.cpp" />
     <ClCompile Include="DrawLine.cpp" />
     <ClCompile Include="DrawString.cpp" />
+    <ClCompile Include="FuncItem.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="GUI.cpp" />
@@ -144,6 +145,7 @@
     <ClCompile Include="MapObjectGroup.cpp" />
     <ClCompile Include="OBullet.cpp" />
     <ClCompile Include="OEnemy.cpp" />
+    <ClCompile Include="OItem.cpp" />
     <ClCompile Include="PlayerCollision.cpp" />
     <ClCompile Include="PlayerController.cpp" />
     <ClCompile Include="Object.cpp" />
@@ -168,6 +170,7 @@
     <ClInclude Include="debug.h" />
     <ClInclude Include="DrawLine.h" />
     <ClInclude Include="DrawString.h" />
+    <ClInclude Include="FuncItem.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameDefine.h" />
     <ClInclude Include="Graphic.h" />
@@ -180,6 +183,7 @@
     <ClInclude Include="MapObjectGroup.h" />
     <ClInclude Include="OBullet.h" />
     <ClInclude Include="OEnemy.h" />
+    <ClInclude Include="OItem.h" />
     <ClInclude Include="PlayerCollision.h" />
     <ClInclude Include="PlayerController.h" />
     <ClInclude Include="Object.h" />

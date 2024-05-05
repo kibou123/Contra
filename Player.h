@@ -24,7 +24,7 @@ public:
 	float maxBullet = 4;
 
 	vector <OBullet*> ListBullet;
-	vector <Object*> ItemBullet;
+	int GunType = 0;
 public:
 	Player(); 
 	~Player();

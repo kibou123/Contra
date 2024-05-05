@@ -289,6 +289,10 @@ Object::tag Object::GetTag(string name)
 	{
 		return tag::Enemy;
 	}
+	if (name == "Falcon")
+	{
+		return tag::Item;
+	}
 	return tag::Wall;
 }
 
