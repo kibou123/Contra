@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 	<Textures textureId="enemy_animation">
-    		<Sprite id="0_soldier_run" x="465" y="327"  w="16" h="32"/>
-		<Sprite id="1_soldier_run" x="484" y="327"  w="16" h="32"/>
-		<Sprite id="2_soldier_run" x="502" y="327"  w="16" h="32"/>
-		<Sprite id="3_soldier_run" x="519" y="327"  w="16" h="32"/>
-		<Sprite id="4_soldier_run" x="537" y="327"  w="16" h="32"/>
-		<Sprite id="5_soldier_run" x="555" y="327"  w="16" h="32"/>
-		<Sprite id="6_soldier_run_bend" x="573" y="327"  w="16" h="32"/>
-		<Sprite id="7_soldier_attack_stand_1" x="591" y="327"  w="24" h="32"/>
-		<Sprite id="8_soldier_attack_stand_2" x="617" y="327"  w="24" h="32"/>
-		<Sprite id="9_soldier_attack_lie" x="643" y="327"  w="32" h="32"/>
+    		<Sprite id="0_soldier_run" x="464" y="326"  w="17" h="33"/>
+		<Sprite id="1_soldier_run" x="483" y="326"  w="17" h="33"/>
+		<Sprite id="2_soldier_run" x="501" y="326"  w="17" h="33"/>
+		<Sprite id="3_soldier_run" x="518" y="326"  w="17" h="33"/>
+		<Sprite id="4_soldier_run" x="536" y="326"  w="17" h="33"/>
+		<Sprite id="5_soldier_run" x="554" y="326"  w="17" h="33"/>
+		<Sprite id="6_soldier_run_bend" x="572" y="326"  w="17" h="33"/>
+		<Sprite id="7_soldier_attack_stand_1" x="590" y="323"  w="25" h="36"/>
+		<Sprite id="8_soldier_attack_stand_2" x="616" y="323"  w="25" h="36"/>
+		<Sprite id="9_soldier_attack_lie" x="642" y="323"  w="33" h="36"/>
 		<Sprite id="10_soldier_No_attack" x="677" y="327"  w="16" h="32"/>
 		<Sprite id="11_rifleman_stand_1" x="460" y="277"  w="24" h="39"/>
 		<Sprite id="12_rifleman_stand_2" x="486" y="277"  w="24" h="39"/>

@@ -6,9 +6,9 @@ Animation* OEnemy::GetAnimationEnemy()
 	//Tạo Animation
 	Animation::DataAnimMap data;
 	// Soldier
-	data[OEnemy::Soldier + Object::Running] = { 0 , 6};
+	data[OEnemy::Soldier + Object::Running] = { 0 , 5};
 	data[OEnemy::Soldier + Object::Dying] = { 7 , 8 };
-	data[OEnemy::rifleman + Object::Running] = { 9 , 9 };
+	data[OEnemy::rifleman + Object::Running] = { 11, 12 };
 
 
 	Animation* _animEnemy = new Animation(EnemyXML, EnemyPNG);

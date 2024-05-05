@@ -28,7 +28,7 @@ PlayerController::~PlayerController()
 void PlayerController::StandState() //reset all state
 {
 	player->State = player->GetVelocity().x != 0 ? Object::Running : Object::Standing;
-	player->SetBound(25, 35);
+	player->SetBound(38, 48);
 
 	if (key->IsKeyDown(Dik_JUMP))
 	{

@@ -28,7 +28,7 @@ Map::Map()
 	objectTag["Wall"] = OWall::Wall;
 	objectTag["Water"] = OWall::Water;
 	objectTag["Soldier"] = OEnemy::Soldier;
-	objectTag["rifleman"] = OEnemy::rifleman;
+	objectTag["RifleMan"] = OEnemy::rifleman;
 
 	for (int i = 0; i < info->numObjectGroups; i++)
 	{
@@ -94,7 +94,7 @@ Object* Map::CreateObject(MapObject* _mapobject)
 			obj = new OEnemy();
 			break;
 		case OEnemy::rifleman:
-			obj = new OEnemy();
+			obj = new RifleMan();
 			break;
 		default:
 			return new Object();
