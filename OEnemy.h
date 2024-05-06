@@ -22,6 +22,7 @@ public:
 	void UpdateAnimation(float gameTime);
 	void Controller();
 	D3DXVECTOR2 OnCollision(Object* obj, D3DXVECTOR2 side);
+	void OnCollision(Object* obj);
 	void SetBound(float width, float height);
 	void Render(Viewport* viewport);
 	static Animation* GetAnimationEnemy();

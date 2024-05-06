@@ -28,7 +28,7 @@
   <Sprite id="25_run_shotdown_attack1" x="600" y="76"  w="38" h="48"  sx="10"  sy="14"/>
   <Sprite id="26_run_shotdown_attack2" x="664" y="75"  w="38" h="48"/>
   <Sprite id="27_run_shotdown_attack3" x="730" y="76"  w="38" h="48"/>
-  <Sprite id="28_jum1" x="794" y="70"  w="38" h="48"  sx="7"  sy="10"/>
+  <Sprite id="28_jum1" x="794" y="70"  w="38" h="48" sx="1" sy="10"/>
   <Sprite id="29_jum2" x="858" y="70"  w="38" h="48"/>
   <Sprite id="30_jum3" x="925" y="70"  w="38" h="48"/>
   <Sprite id="31_jum4" x="991" y="70"  w="38" h="48"/>
@@ -38,7 +38,7 @@
   <Sprite id="35_swimming_shot" x="210" y="127"  w="38" h="48" sx="14"  sy="8"/>
   <Sprite id="36_swimming_shot_attack" x="275" y="127"  w="38" h="48" />
   <Sprite id="37_swimming_shotup" x="339" y="127"  w="38" h="48"/>
-  <Sprite id="38_swimming_shotup_attack" x="405" y="127"  w="38" h="48"  sx="8"  sy="9"/>
+  <Sprite id="38_swimming_shotup_attack" x="405" y="127"  w="38" h="48"  sx="13"  sy="20"/>
   <Sprite id="39_swimming_shotup_stand" x="470" y="127"  w="38" h="48"/>
   <Sprite id="40_swimming_shotup_standattack" x="535" y="127"  w="38" h="48"  sx="4"  sy="29"/>
   <Sprite id="41_dive1" x="599" y="127"  w="38" h="48"/>
@@ -50,6 +50,7 @@
   <Sprite id="47_dead4" x="988" y="135"  w="38" h="48"/>
   <Sprite id="48_stand1" x="535" y="11"  w="38" h="48"/>
   <Sprite id="49_stand2" x="730" y="11"  w="38" h="48"  sx="14"  sy="21"/>
+  <Sprite id="50_falling" x="210" y="11"  w="38" h="48" sx="14"  sy="24"/>
 </Textures>		
 		
 

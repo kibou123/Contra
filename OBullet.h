@@ -22,8 +22,8 @@ public:
 	OBullet();
 	~OBullet();
 
-	void Init(int angle, int acceleration, D3DXVECTOR2 pos, int type = Bullettype::NoneBullet, int kind = 0);
-	void Init(int angle, int acceleration, int type = Bullettype::NoneBullet, int kind = 0);
+	void Init(int angle, float acceleration, D3DXVECTOR2 pos, int type = Bullettype::NoneBullet, int kind = 0);
+	void Init(int angle, float acceleration, int type = Bullettype::NoneBullet, int kind = 0);
 	void Reset();
 	void Fire(D3DXVECTOR2 pos);
 	void BeforeUpdate(float gameTime, Keyboard* key);

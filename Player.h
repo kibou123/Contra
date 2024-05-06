@@ -40,4 +40,6 @@ public:
 	void SetBound(float width, float height);
 	void Render(Viewport* viewport);
 	static Player* GetInstance();
+
+	int GetIndexGun();
 };

@@ -110,6 +110,15 @@ void ObjectManager::DeleteObjectMap(Object* obj)
 	}
 }
 
+void ObjectManager::CheckDeleteObject(Object* obj)
+{
+	if (Collision::isCollision(obj->GetBound(), viewport->GetBoundViewport()))
+	{
+		return;
+	}
+	DeleteObjectMap(obj);
+}
+
 Viewport* ObjectManager::GetViewPort()
 {
 	return viewport;
@@ -119,7 +128,7 @@ Viewport* ObjectManager::GetViewPort()
 void ObjectManager::Render()
 {
 	//Vẽ map
-	//map->Render(viewport);
+	map->Render(viewport);
 	//Vẽ
 	for (size_t i = 0; i < map->ListObject.size(); i++)
 	{

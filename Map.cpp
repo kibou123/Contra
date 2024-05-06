@@ -116,7 +116,14 @@ Object* Map::CreateObject(MapObject* _mapobject)
 			break;
 		case OItem::M:
 			obj = new OItem();
+			break;
 		case OItem::S:
+			obj = new OItem();
+			break;
+		case OItem::F:
+			obj = new OItem();
+			break;
+		case OItem::L:
 			obj = new OItem();
 			break;
 		default:

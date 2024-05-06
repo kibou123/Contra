@@ -28,6 +28,14 @@ void FuncItem::CallFunc(int itemType)
 		Player::GetInstance()->GunType = itemType;
 		Player::GetInstance()->maxBullet = 10;
 		break;
+	case OItem::F:
+		Player::GetInstance()->GunType = itemType;
+		Player::GetInstance()->maxBullet = 4;
+		break;
+	case OItem::L:
+		Player::GetInstance()->GunType = itemType;
+		Player::GetInstance()->maxBullet = 2;
+		break;
 	default:
 		break;
 	}
@@ -52,7 +60,7 @@ void FuncItem::GetBullet(std::vector<OBullet*>& listBullet)
 	}
 
 	OItem::ItemType itemType = (OItem::ItemType)Player::GetInstance()->GunType;
-	int arrow = Player::GetInstance()->ArrowGun;
+	int arrow = Player::GetInstance()->AngleGun;
 	int numBullet = FuncItem::GetNumBulletByType(itemType) > (maxBullet - count) 
 		? (maxBullet - count) : FuncItem::GetNumBulletByType(itemType);
 	for (size_t i = 0; i < playerListBullet.size(); i++)
@@ -64,7 +72,7 @@ void FuncItem::GetBullet(std::vector<OBullet*>& listBullet)
 		}
 		if (!playerListBullet[i]->IsFire)
 		{
-			InitBullet(playerListBullet[i], arrow, Player::GetInstance()->isFlip, size);
+			InitBullet(playerListBullet[i], arrow, Player::GetInstance()->isFlip, size, itemType);
 			listBullet.push_back(playerListBullet[i]);
 		}
 	}
@@ -72,25 +80,34 @@ void FuncItem::GetBullet(std::vector<OBullet*>& listBullet)
 
 void FuncItem::InitBullet(OBullet* bullet, int arrow, bool isFlip, int index, int itemType)
 {
-	int	acc = isFlip ? -1 : 1;
 	int angleList[5] = { 0, 1, -1, 2, -2 };
-	int arrowList[10] = { 0, 0, 0, 90, 0, 45, 0, -45 };
+	float acc = isFlip ? -1 : 1;
+	int damage = 1;
 
-	bullet->Init(arrowList[arrow], acc, GetBulletTypeByItemType(itemType), angleList[index]);
+	int bulletType = GetBulletTypeByItemType(itemType, acc, damage);
+	bullet->Init(arrow, acc, bulletType, angleList[index]);
+	bullet->Damage = damage;
 }
 
-int FuncItem::GetBulletTypeByItemType(int itemType)
+int FuncItem::GetBulletTypeByItemType(int itemType, float& acc, int& damage)
 {
 	switch ((OItem::ItemType)itemType)
 	{
 	case OItem::M:
+		acc *= 3;
+		return OBullet::RedBullet;
 	case OItem::S:
+		acc *= 1.5;
 		return OBullet::RedBullet;
 	case OItem::F:
+		damage = 2;
 		return OBullet::FBullet;
 	case OItem::L:
+		damage = 4;
+		acc *= 2;
 		return OBullet::LBullet;
 	default:
+		acc *= 1.2;
 		return OBullet::NormalBullet;
 	}
 }

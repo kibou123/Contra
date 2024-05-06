@@ -330,9 +330,10 @@ void Object::JumpState()
 
 	if (isFall)
 	{
-		float fallAc = ObjectManager::GetInstance()->IsFixTime ? Gravity/10 : 0;
+		float fallAc = ObjectManager::GetInstance()->IsFixTime ? Gravity/8 : 0;
 		velocity.y += fallAc; //trừ vận tốc sẽ nhảy nhẹ 1 đoạn
-		velocity.y = velocity.y < -50 ? gravity : velocity.y;
+		if (velocity.y < Gravity)
+			velocity.y = Gravity;
 		return;
 	}
 	//JumpUP

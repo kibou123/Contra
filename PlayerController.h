@@ -36,5 +36,6 @@ public:
 	void DivingState();
 	void PlayControllerF();
 	void AttackState();
+	void ArrowState();
 	void Update(float gameTime, Keyboard* key);
 };
