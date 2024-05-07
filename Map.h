@@ -5,6 +5,8 @@
 #include "InfoMap.h"
 #include "Water.h"
 #include "RifleMan.h"
+//#include "Cannon.h"
+//#include "Tank.h"
 #include "OItem.h"
 #include "BinaryTree.h"
 

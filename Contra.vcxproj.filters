@@ -142,6 +142,12 @@
     <ClCompile Include="RifleMan.cpp">
       <Filter>Object\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Tank.cpp">
+      <Filter>Object\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Cannon.cpp">
+      <Filter>Object\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TinyXML\tinystr.h">
@@ -242,6 +248,12 @@
       <Filter>Object\Item</Filter>
     </ClInclude>
     <ClInclude Include="RifleMan.h">
+      <Filter>Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Tank.h">
+      <Filter>Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Cannon.h">
       <Filter>Object\Enemy</Filter>
     </ClInclude>
   </ItemGroup>

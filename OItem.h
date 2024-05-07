@@ -1,4 +1,4 @@
-#include "Object.h"
+﻿#include "Object.h"
 #include "GameDefine.h"
 #include "Collision.h"
 
@@ -14,6 +14,8 @@ public:
 		S = 300,
 		F = 400,
 		L = 500,
+		T = 600, // nó là cái hộp loại đạn
+		FLy = 700, // hộp đạn bay
 	} _itemType = ItemType::M;
 
 	OItem();

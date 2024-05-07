@@ -285,7 +285,7 @@ Object::tag Object::GetTag(string name)
 	{
 		return tag::Wall;
 	}
-	if (name == "Soldier" || name == "RifleMan")
+	if (name == "Soldier" || name == "RifleMan" || name == "Tank" || name == "Cannon")
 	{
 		return tag::Enemy;
 	}
