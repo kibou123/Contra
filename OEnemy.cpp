@@ -84,14 +84,25 @@ D3DXVECTOR2 OEnemy::OnCollision(Object* obj, D3DXVECTOR2 side)
 			}
 		}
 		return side;
+	case Object::Bullet:
+		obj->OnCollision(this);
+		return D3DXVECTOR2(Collision::NONE, Collision::NONE);
 	default:
 		return D3DXVECTOR2(Collision::NONE, Collision::NONE);
 	}
 }
 
-//void OEnemy::OnCollision(Object* obj)
-//{
-//}
+void OEnemy::OnCollision(Object* obj)
+{
+	switch (obj->Tag)
+	{
+	case Object::Player:
+		Player::GetInstance()->_playerController->DeadState();
+		return;
+	default:
+		return;
+	}
+}
 
 void OEnemy::BeforeUpdate(float gameTime, Keyboard* key)
 {
@@ -125,7 +136,8 @@ void OEnemy::Update(float gameTime, Keyboard* key)
 void OEnemy::UpdateAnimation(float gameTime)
 {
 	_anim->NewAnimationByIndex(_enemyType + this->State + _kind);
-	_anim->SetPosition(D3DXVECTOR2(position.x, position.y + Height / 2));
+	int h = _anim->GetCurrentFrameInfo().h;
+	_anim->SetPosition(D3DXVECTOR2(position.x, position.y + h / 2));
 	_anim->SetFlipFlag(velocity.x > 0);
 	_anim->Update(gameTime);
 }

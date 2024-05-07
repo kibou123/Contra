@@ -27,8 +27,8 @@ PlayerController::~PlayerController()
 //Trạng thái Đứng
 void PlayerController::StandState() //reset all state
 {
-	player->State = player->GetVelocity().x != 0 ? Object::Running : Object::Standing;
-	player->SetBound(38, 48);
+	player->State = key->GIsKeyUp(Dik_LEFT) && key->GIsKeyUp(DIK_RIGHT) ? Object::Standing : Object::Running;
+	player->SetBound(25, 35);
 
 	if (key->IsKeyDown(Dik_JUMP))
 	{
@@ -36,7 +36,7 @@ void PlayerController::StandState() //reset all state
 		return;
 	}
 
-	if (key->IsKeyDown(Dik_DOWN))
+	if (key->IsKeyDown(Dik_DOWN) && key->GIsKeyUp(Dik_LEFT) && key->GIsKeyUp(DIK_RIGHT))
 	{
 		SitState();
 		return;
@@ -56,6 +56,7 @@ void PlayerController::Fall()
 void PlayerController::JumpState()
 {
 	player->SetBound(20, 20);
+	if (player->State == Object::Falling) player->SetBound(25, 35);
 	player->JumpState();
 }
 
@@ -72,6 +73,11 @@ void PlayerController::SitState()
 	player->isFall = false;
 	player->State = Object::Sitting;
 	player->SetBound(32, 16);
+	if (key->IsKeyDown(Dik_LEFT) || key->IsKeyDown(Dik_RIGHT))
+	{
+		StandState();
+		return;
+	}
 	if (key->GIsKeyUp(Dik_DOWN))
 	{
 		StandState();
@@ -131,6 +137,41 @@ void PlayerController::MoveX()
 	player->SetVelocityX(speed);
 }
 
+void PlayerController::ArrowState()
+{
+	//Nếu chết rồi không có di chuyển
+	if (player->State == Object::Dying || player->State == Object::Diving)
+	{
+		player->SetVelocityX(0);
+		return;
+	}
+	bool keyRun = key->IsKeyDown(Dik_LEFT) || key->IsKeyDown(Dik_RIGHT);
+	player->AngleGun = 0;
+	if (key->IsKeyDown(Dik_UP))
+	{
+		if (keyRun)
+		{
+			player->AngleGun = 30;
+			return;
+		}
+		player->AngleGun = 90;
+		return;
+	}
+	if (key->IsKeyDown(Dik_DOWN))
+	{
+		if (keyRun)
+		{
+			player->AngleGun = -30;
+			return;
+		}
+		if (player->State == Object::Jumping)
+		{
+			player->AngleGun = -90;
+			return;
+		}
+	}
+}
+
 void PlayerController::PlayControllerF()
 {
 	//Lấy Function từ player state
@@ -152,7 +193,7 @@ void PlayerController::Update(float gameTime, Keyboard* key)
 
 	this->PlayControllerF();
 	MoveX();
-
+	ArrowState();
 	timeReload += gameTime;
 	AttackState();
 }
@@ -188,7 +229,7 @@ void PlayerController::AttackState()
 		return;
 	}
 
-	float timeR = isReload ? 0.1 : 0.2;//ăn đạn R thì bắn nhanh hơn
+	float timeR = isReload ? 0.15 : 0.2;//ăn đạn R thì bắn nhanh hơn
 	if (isAllowAttack && key->IsKeyDown(Dik_ATTACK) && (timeReload > timeR - 0.05))
 	{
 		timeReload = 0;
@@ -196,16 +237,10 @@ void PlayerController::AttackState()
 
 		isAttack = true;
 
-		//Khong flip
-		int	acc = 1;
-		D3DXVECTOR2 pos = player->GetPosition();
-		pos.x = player->GetBound().right;
-		pos.y = player->GetBound().top - player->GetHeight() / 2;
-		if (player->isFlip)
-		{
-			acc = -1;
-			pos.x = player->GetBound().left;
-		}
+		D3DXVECTOR2 pos = player->_anim->GunPos(player->_playerType + player->State + player->GetIndexGun());
+		pos.x = player->isFlip ? -pos.x : pos.x;
+		pos += player->position;
+
 		for (size_t i = 0; i < listBullet.size(); i++)
 		{
 			listBullet[i]->Fire(pos);

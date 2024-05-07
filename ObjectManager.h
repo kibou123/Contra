@@ -35,6 +35,7 @@ public:
 	Viewport* GetViewPort();
 	void AddObjectMap(Object* obj);
 	void DeleteObjectMap(Object* obj);
+	void CheckDeleteObject(Object* obj);
 	//Vẽ Object lên màn hình
 	void Render();
 };

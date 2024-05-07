@@ -7,7 +7,7 @@
 
 class Object
 {
-protected:
+public:
 	Animation* _anim;
 	float Width, Height;
 	bool AllowDraw, lock;
@@ -25,7 +25,7 @@ public:
 	bool isAllowJump = true, isFall = false;
 	float posYStartJump, velYStartFall, gravity, speedJump, maxJump;
 	float timeDead;
-	int ArrowGun = 1;
+	int AngleGun = 0;
 public:
 	int id;
 	int _kind = 0;
@@ -143,6 +143,19 @@ public:
 	}
 
 	virtual void JumpState();
+
+	static int GetArrowIndexByAngle(int angle)
+	{
+		map<int, int> angleList;
+		angleList[0] = 0;
+		angleList[90] = 2;
+		angleList[30] = 4;
+		angleList[-30] = 6;
+		angleList[45] = 4;
+		angleList[-45] = 6;
+		angleList[-90] = 8;
+		return angleList[angle];
+	}
 
 	static void Log(string log)
 	{

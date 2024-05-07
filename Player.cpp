@@ -73,7 +73,7 @@ Animation::DataAnimMap dataM()
 	data[Player::Blue + Object::Swimming + 4] = { 37, 37 };// Bơi + súng + chéo 
 	data[Player::Blue + Object::Swimming + 5] = { 38, 38 };// Bơi + súng + chéo + bắn
 
-	data[Player::Blue + Object::Falling] = {3, 3 };
+	data[Player::Blue + Object::Falling] = {50, 50 };
 
 	return data;
 }
@@ -141,17 +141,38 @@ void Player::Update(float gameTime, Keyboard* key)
 
 	for (size_t i = 0; i < ListBullet.size(); i++)
 	{
-		if (abs(ListBullet.at(i)->positionStart.x - ListBullet.at(i)->GetPosition().x) > GameWidth)
+		if (!Collision::isCollision(ListBullet.at(i)->GetBound(),
+			ObjectManager::GetInstance()->GetViewPort()->GetBoundViewport()))
 		{
 			ListBullet.at(i)->Reset();
 		}
 	}
 }
 
+int Player::GetIndexGun()
+{
+	int index = Object::GetArrowIndexByAngle(AngleGun);
+	switch (State)
+	{
+	case Object::Standing:
+		return min(2, index) + _playerController->isAttack;
+	case Object::Running:
+		return min(6, index) + _playerController->isAttack;
+	case Object::Sitting:
+		return _playerController->isAttack;
+	case Object::Swimming:
+		return min(4, index) + _playerController->isAttack;
+	default:
+		return 0;
+	}
+	return 0;
+}
+
 void Player::UpdateAnimation(float gameTime)
 {
-	_anim->NewAnimationByIndex(_playerType + this->State + (_playerController->isAttack ? ArrowGun : 0));
-	_anim->SetPosition(D3DXVECTOR2(position.x, position.y + Height / 2));
+	_anim->NewAnimationByIndex(_playerType + this->State + GetIndexGun());
+	int h = _anim->GetCurrentFrameInfo().h;
+	_anim->SetPosition(D3DXVECTOR2(position.x, position.y + h / 2));
 	_anim->SetFlipFlag(isFlip);
 	_anim->Update(gameTime);
 }

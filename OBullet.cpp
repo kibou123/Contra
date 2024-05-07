@@ -33,20 +33,20 @@ OBullet::~OBullet()
 	delete _anim;
 }
 
-void OBullet::Init(int angle, int acceleration, D3DXVECTOR2 pos, int _type, int kind)
+void OBullet::Init(int angle, float acceleration, D3DXVECTOR2 pos, int _type, int kind)
 {
 	Init(angle, acceleration, _type, kind);
 	Fire(pos);
 }
 
-void OBullet::Init(int angle, int acceleration, int _type, int kind)
+void OBullet::Init(int angle, float acceleration, int _type, int kind)
 {
 	Reset();
 	_bulletType = (Bullettype)_type;
 	_kind = kind;
 	velocity = D3DXVECTOR2(BulletSpeed * acceleration, 0);
 	type = _type;
-	Angle = acceleration * ((kind * 15) + angle) + 0.01;
+	Angle = (acceleration < 0 ? -1 : 1) * ((kind * 15) + angle) + 0.01;
 }
 
 void OBullet::Reset()
@@ -70,7 +70,6 @@ void OBullet::Fire(D3DXVECTOR2 pos)
 
 	this->SetBound(8, 8);
 	HP = 1;
-	Damage = 1;
 }
 
 void OBullet::Controller()
@@ -100,8 +99,11 @@ void OBullet::OnCollision(Object* obj)
 		{
 			break;
 		}
-		velocity.x = 0;
-		this->State = Object::Dying;
+		if (_bulletType != Bullettype::LBullet || obj->GetHP() > this->Damage)
+		{
+			this->State = Object::Dying;
+			velocity.x = 0;
+		}
 		obj->SetHP(obj->GetHP() - this->Damage);
 		obj->SetVelocityX(velocity.x);
 		break;
