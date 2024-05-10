@@ -138,15 +138,6 @@ void Player::Update(float gameTime, Keyboard* key)
 	UpdateAnimation(gameTime);
 
 	Object::Update(gameTime, key);
-
-	for (size_t i = 0; i < ListBullet.size(); i++)
-	{
-		if (!Collision::isCollision(ListBullet.at(i)->GetBound(),
-			ObjectManager::GetInstance()->GetViewPort()->GetBoundViewport()))
-		{
-			ListBullet.at(i)->Reset();
-		}
-	}
 }
 
 int Player::GetIndexGun()

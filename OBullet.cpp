@@ -1,5 +1,6 @@
 ﻿#include "OBullet.h"
 #include "Player.h"
+#include "ObjectManager.h"
 
 Animation* OBullet::GetAnimationBullet()
 {
@@ -131,6 +132,11 @@ void OBullet::BeforeUpdate(float gameTime, Keyboard* key)
 
 void OBullet::Update(float gameTime, Keyboard* key)
 {
+	if (!Collision::isCollision(GetBound(), ObjectManager::GetInstance()->GetViewPort()->GetBoundViewport()))
+	{
+		Reset();
+	}
+
 	if (!IsFire) return;
 
 	//Update Animation
