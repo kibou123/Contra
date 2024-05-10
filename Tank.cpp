@@ -2,8 +2,14 @@
 
 void Tank::Init(D3DXVECTOR2 pos, int type, int kind)
 {
-	OEnemy::Init(pos, type, kind);
-	velocity = D3DXVECTOR2(0, Gravity);
-	SetState(Object::Standing);
+	RifleMan::Init(pos, type, kind);
 	this->SetBound(32, 32);
+	maxBullet = 1;
+	HP = 10;
+}
+
+void Tank::Controller()
+{
+	RifleMan::Controller();
+	SetVelocity(0, 0);
 }

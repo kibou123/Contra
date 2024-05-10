@@ -9,6 +9,18 @@ class OBullet : public Object
 public:
 	bool IsFire = false;
 	float Angle = 0;
+	D3DXVECTOR2 localPosition;
+
+	Object* Master;
+	void DeleteBullet()
+	{
+		if (Master == NULL) return;
+		auto it = std::find(Master->ListBullet.begin(), Master->ListBullet.end(), this);
+		if (it != Master->ListBullet.end())
+		{
+			Master->ListBullet.erase(it);
+		}
+	}
 	enum Bullettype
 	{
 		NoneBullet = 100,

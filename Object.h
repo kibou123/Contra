@@ -25,7 +25,13 @@ public:
 	bool isAllowJump = true, isFall = false;
 	float posYStartJump, velYStartFall, gravity, speedJump, maxJump;
 	float timeDead;
+
+	float maxBullet = 0;
+	vector <Object*> ListBullet;
+	int GunType = 0;
 	int AngleGun = 0;
+	virtual void Fire(D3DXVECTOR2 pos){ }
+
 public:
 	int id;
 	int _kind = 0;

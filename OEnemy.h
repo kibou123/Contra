@@ -7,6 +7,8 @@ using namespace Define;
 class OEnemy : public Object
 {
 public:
+	float timeAttack, reload;
+
 	enum Enemytype
 	{
 		Soldier = 100,
@@ -28,4 +30,9 @@ public:
 	void SetBound(float width, float height);
 	void Render(Viewport* viewport);
 	static Animation* GetAnimationEnemy();
+
+	int GetIndexGun()
+	{
+		return Object::GetArrowIndexByAngle(AngleGun);
+	}
 };

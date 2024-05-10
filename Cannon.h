@@ -1,11 +1,13 @@
 #pragma once
-#include "OEnemy.h"
-class Cannon : public OEnemy
+#include "RifleMan.h"
+class Cannon : public RifleMan
 {
 public:
-	Cannon() : OEnemy() {};
+	Cannon() : RifleMan() {};
 	~Cannon();
 
 	void Init(D3DXVECTOR2 pos, int type = Enemytype::Cannon, int kind = 0);
+	void Controller();
+	void AttackState();
 };
 

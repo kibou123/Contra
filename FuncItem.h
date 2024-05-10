@@ -1,5 +1,5 @@
 #pragma once
-#include "OBullet.h"
+#include "Object.h"
 
 class FuncItem
 {
@@ -8,9 +8,8 @@ public:
 	~FuncItem();
 
 	static void CallFunc(int itemType);
-	static void GetBullet(std::vector<OBullet*>& listBullet);
+	static void GetBullet(std::vector<Object*>& listBullet, Object* obj);
 	static int GetNumBulletByType(int itemType);
-	static int GetBulletTypeByItemType(int itemType, float& acc, int& damage);
-	static void InitBullet(OBullet* bullet, int arrow, bool isFlip, int index, int itemType = 0);
+	static Object* CreateBullet(Object* master, int arrow, bool isFlip, int index, int itemType = 0);
 };
 

@@ -151,7 +151,7 @@ void PlayerController::ArrowState()
 	{
 		if (keyRun)
 		{
-			player->AngleGun = 30;
+			player->AngleGun = 45;
 			return;
 		}
 		player->AngleGun = 90;
@@ -161,7 +161,7 @@ void PlayerController::ArrowState()
 	{
 		if (keyRun)
 		{
-			player->AngleGun = -30;
+			player->AngleGun = -45;
 			return;
 		}
 		if (player->State == Object::Jumping)
@@ -212,19 +212,7 @@ void PlayerController::AttackState()
 		isAttack = false;
 	}
 	//
-	if (player->ListBullet.size() == 0)
-		for (int i = 0; i < 11; i++)//tạo 10 viên đạn trước cho khỏi lag
-		{
-			OBullet* bullet = new OBullet();
-			bullet->Reset();
-			player->ListBullet.push_back(bullet);
-			ObjectManager::GetInstance()->AddObjectMap(bullet);
-		}
-
-	vector <OBullet*> listBullet;
-	listBullet.clear();
-	FuncItem::GetBullet(listBullet);
-	if (listBullet.size() == 0)
+	if (player->ListBullet.size() >= player->maxBullet)
 	{
 		return;
 	}
@@ -241,9 +229,12 @@ void PlayerController::AttackState()
 		pos.x = player->isFlip ? -pos.x : pos.x;
 		pos += player->position;
 
+		vector <Object*> listBullet;
+		FuncItem::GetBullet(listBullet, player);
 		for (size_t i = 0; i < listBullet.size(); i++)
 		{
 			listBullet[i]->Fire(pos);
+			player->ListBullet.push_back(listBullet[i]);
 		}
 	}
 }

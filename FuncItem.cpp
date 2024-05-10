@@ -1,6 +1,6 @@
 #include "FuncItem.h"
-#include "Player.h"
-#include "OItem.h"
+#include "OBullet.h"
+#include "ObjectManager.h"
 
 FuncItem::FuncItem()
 {
@@ -13,8 +13,6 @@ FuncItem::~FuncItem()
 
 void FuncItem::CallFunc(int itemType)
 {
-
-
 	switch ((OItem::ItemType)itemType)
 	{
 	case OItem::R:
@@ -40,76 +38,67 @@ void FuncItem::CallFunc(int itemType)
 		break;
 	}
 }
-void FuncItem::GetBullet(std::vector<OBullet*>& listBullet)
+void FuncItem::GetBullet(std::vector<Object*>& listBullet, Object* obj)
 {
-	int maxBullet = Player::GetInstance()->maxBullet;
-	vector <OBullet*> playerListBullet = Player::GetInstance()->ListBullet;
+	OItem::ItemType itemType = (OItem::ItemType)obj->GunType;
+	int arrow = obj->AngleGun;
+	int isFlip = obj->isFlip;
 
-	int count = 0;
-	for (size_t i = 0; i < playerListBullet.size(); i++)
+	int count = obj->maxBullet - obj->ListBullet.size();
+	int num = GetNumBulletByType(itemType);
+	count = num < count ? num : count;
+	for (size_t i = 0; i < count; i++)
 	{
-		if (playerListBullet[i]->IsFire)
-		{
-			count++;
-		}
-	}
-
-	if (count >= maxBullet)
-	{
-		return;
-	}
-
-	OItem::ItemType itemType = (OItem::ItemType)Player::GetInstance()->GunType;
-	int arrow = Player::GetInstance()->AngleGun;
-	int numBullet = FuncItem::GetNumBulletByType(itemType) > (maxBullet - count) 
-		? (maxBullet - count) : FuncItem::GetNumBulletByType(itemType);
-	for (size_t i = 0; i < playerListBullet.size(); i++)
-	{
-		int size = listBullet.size();
-		if (size >= numBullet)
-		{
-			break;
-		}
-		if (!playerListBullet[i]->IsFire)
-		{
-			InitBullet(playerListBullet[i], arrow, Player::GetInstance()->isFlip, size, itemType);
-			listBullet.push_back(playerListBullet[i]);
-		}
+		Object* bullet = CreateBullet(obj, arrow, isFlip, i, itemType);
+		listBullet.push_back(bullet);
 	}
 }
 
-void FuncItem::InitBullet(OBullet* bullet, int arrow, bool isFlip, int index, int itemType)
+Object* FuncItem::CreateBullet(Object* master, int arrow, bool isFlip, int index, int itemType)
 {
+	Object* obj = ObjectManager::GetInstance()->GetBullet();
+	OBullet * bullet = dynamic_cast<OBullet*>(obj);
 	int angleList[5] = { 0, 1, -1, 2, -2 };
 	float acc = isFlip ? -1 : 1;
 	int damage = 1;
 
-	int bulletType = GetBulletTypeByItemType(itemType, acc, damage);
-	bullet->Init(arrow, acc, bulletType, angleList[index]);
-	bullet->Damage = damage;
-}
-
-int FuncItem::GetBulletTypeByItemType(int itemType, float& acc, int& damage)
-{
+	int bulletType = OBullet::NormalBullet;
 	switch ((OItem::ItemType)itemType)
 	{
 	case OItem::M:
 		acc *= 3;
-		return OBullet::RedBullet;
+		bulletType = OBullet::RedBullet;
+		break;
 	case OItem::S:
 		acc *= 1.5;
-		return OBullet::RedBullet;
+		bulletType = OBullet::RedBullet;
+		break;
 	case OItem::F:
 		damage = 2;
-		return OBullet::FBullet;
+		bulletType = OBullet::FBullet;
+		//delete bullet;
+		//bullet = new OBullet();
+		break;
 	case OItem::L:
 		damage = 4;
 		acc *= 2;
-		return OBullet::LBullet;
+		bulletType = OBullet::LBullet;
+		break;
+	case 10000:
+		acc *= 0.5;
+		bulletType = OBullet::EnemyBullet;
+		break;
 	default:
 		acc *= 1.2;
-		return OBullet::NormalBullet;
+		bulletType = OBullet::NormalBullet;
+		break;
 	}
+
+	bullet->Init(arrow, acc, bulletType, angleList[index]);
+	bullet->Master = master;
+	bullet->Damage = damage;
+
+	return bullet;
 }
 
 int FuncItem::GetNumBulletByType(int itemType)

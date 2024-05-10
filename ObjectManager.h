@@ -19,9 +19,13 @@ protected:
 
 	float pauseTime, fixTime;
 	vector <Object*> mCurrList;
+
 public:
 	bool isPause;
 	bool IsFixTime = false;
+
+	vector <Object*> mBulletList;
+	int currBullet;
 
 	ObjectManager();
 	~ObjectManager();
@@ -35,7 +39,9 @@ public:
 	Viewport* GetViewPort();
 	void AddObjectMap(Object* obj);
 	void DeleteObjectMap(Object* obj);
-	void CheckDeleteObject(Object* obj);
+	bool TryDeleteObject(Object* obj);
 	//Vẽ Object lên màn hình
 	void Render();
+
+	Object* GetBullet();
 };

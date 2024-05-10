@@ -106,12 +106,12 @@ Object* Map::CreateObject(MapObject* _mapobject)
 		case OEnemy::Rifleman:
 			obj = new RifleMan();
 			break;
-		/*case OEnemy::Tank:
+		case OEnemy::Tank:
 			obj = new Tank();
-			break;*/
-		/*case OEnemy::Cannon:
+			break;
+		case OEnemy::Cannon:
 			obj = new Cannon();
-			break;*/
+			break;
 		default:
 			return NULL;
 		}

@@ -1,6 +1,7 @@
 ﻿#include "ObjectManager.h"
 #include "string.h"
 #include "Player.h"
+#include "OBullet.h"
 #pragma warning(disable : 4996)
 
 
@@ -66,25 +67,30 @@ void ObjectManager::Update(float gameTime, Keyboard* key)
 			isPause = false;
 		return;
 	}
-
+	vector <Object*> listObject;
 	//map->ListObject.clear();
-	//map->Tree->getObjectsCollideAble(map->ListObject, viewport->GetBoundViewport());
-
-	//BeforeUpdate all Object
+	//map->Tree->getObjectsCollideAble(mCurrList, viewport->GetBoundViewport());
 	for (size_t i = 0; i < map->ListObject.size(); i++)
 	{
-		map->ListObject.at(i)->BeforeUpdate(gameTime, key);
+		Object* obj = map->ListObject.at(i);
+		if (Collision::isCollision(obj->GetBound(), viewport->GetBoundViewport())
+			|| obj->Tag == Object::Item * obj->position.x < viewport->GetBoundViewport().right+ 20)
+		{
+			listObject.push_back(obj);
+			obj->BeforeUpdate(gameTime, key);
+		}
+
 	}
 
 	//Check Collision
-	for (size_t i = 0; i < map->ListObject.size(); i++)
-	for (size_t j = 0; j < map->ListObject.size(); j++)
+	for (size_t i = 0; i < listObject.size(); i++)
+	for (size_t j = 0; j < listObject.size(); j++)
 		if (i != j)
-			map->ListObject.at(i)->OnCollision(map->ListObject.at(j), gameTime);
+			listObject.at(i)->OnCollision(listObject.at(j), gameTime);
 
 	//Update all Object
-	for (size_t i = 0; i < map->ListObject.size(); i++)
-		map->ListObject.at(i)->Update(gameTime, key);
+	for (size_t i = 0; i < listObject.size(); i++)
+		listObject.at(i)->Update(gameTime, key);
 
 	//Update Viewport theo vị trí Player
 	viewport->Update(gameTime, key, Player::GetInstance()->GetPosition());
@@ -110,13 +116,29 @@ void ObjectManager::DeleteObjectMap(Object* obj)
 	}
 }
 
-void ObjectManager::CheckDeleteObject(Object* obj)
+bool ObjectManager::TryDeleteObject(Object* obj)
 {
 	if (Collision::isCollision(obj->GetBound(), viewport->GetBoundViewport()))
 	{
-		return;
+		return false;
 	}
 	DeleteObjectMap(obj);
+	return true;
+}
+
+Object* ObjectManager::GetBullet()
+{
+	int maxB = 5;
+	if (mBulletList.size() > maxB)
+	{
+		currBullet++;
+		if (currBullet >= mBulletList.size()) currBullet = 0;
+		return mBulletList[currBullet];
+	}
+
+	OBullet* bullet = new OBullet();
+	mBulletList.push_back(bullet);
+	return bullet;
 }
 
 Viewport* ObjectManager::GetViewPort()

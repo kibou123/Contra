@@ -1,6 +1,7 @@
 ﻿#include "OItem.h"
 #include "Player.h"
 #include "FuncItem.h"
+#include "Obullet.h"
 
 Animation* OItem::GetAnimation()
 {
@@ -85,7 +86,7 @@ void OItem::OnCollision(Object* obj)
 	switch (obj->Tag)
 	{
 	case Object::Bullet:
-		if (State == Running)
+		if (State == Running && type != OBullet::EnemyBullet)
 		{
 			obj->State = Dying;
 			HP = 0;

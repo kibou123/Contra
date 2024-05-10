@@ -7,15 +7,17 @@ Animation* OBullet::GetAnimationBullet()
 	//Tạo Animation
 	Animation::DataAnimMap data;
 	// Soldier
-	data[OBullet::NormalBullet + Object::Running] = { 10 , 12 };
+	data[OBullet::NormalBullet + Object::Running] = { 10 , 11 };
 	data[OBullet::RedBullet + Object::Running] = { 13 , 13 };
 	data[OBullet::FBullet + Object::Running] = {14, 14};
 	data[OBullet::LBullet + Object::Running] = { 15, 15 };
+	data[OBullet::EnemyBullet + Object::Running] = { 11, 12 };
 
 	data[OBullet::NormalBullet + Object::Dying] = { 22 , 22};
 	data[OBullet::RedBullet + Object::Dying] = { 22 , 22 };
 	data[OBullet::FBullet + Object::Dying] = { 22, 22 };
 	data[OBullet::LBullet + Object::Dying] = { 22, 22 };
+	data[OBullet::EnemyBullet + Object::Dying] = { 22, 22 };
 
 
 	Animation* _anim = new Animation(ItemXML, ItemPNG);
@@ -48,6 +50,9 @@ void OBullet::Init(int angle, float acceleration, int _type, int kind)
 	velocity = D3DXVECTOR2(BulletSpeed * acceleration, 0);
 	type = _type;
 	Angle = (acceleration < 0 ? -1 : 1) * ((kind * 15) + angle) + 0.01;
+	localPosition = D3DXVECTOR2(0, 0);
+
+	ObjectManager::GetInstance()->AddObjectMap(this);
 }
 
 void OBullet::Reset()
@@ -59,6 +64,9 @@ void OBullet::Reset()
 	timeDead = 0;
 	HP = 1;
 	Damage = 0;
+
+	DeleteBullet();
+	ObjectManager::GetInstance()->DeleteObjectMap(this);
 }
 
 void OBullet::Fire(D3DXVECTOR2 pos)

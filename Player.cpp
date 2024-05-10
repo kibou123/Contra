@@ -3,7 +3,7 @@
 #include <math.h>
 #include "GUI.h"
 #include "ObjectManager.h"
-#include "Obullet.h"
+
 #pragma warning(disable : 4996)
 
 Player* Player::_player = nullptr;
