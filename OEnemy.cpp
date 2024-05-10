@@ -8,7 +8,21 @@ Animation* OEnemy::GetAnimationEnemy()
 	// Soldier
 	data[OEnemy::Soldier + Object::Running] = { 0 , 5};
 	data[OEnemy::Soldier + Object::Dying] = { 7 , 8 };
-	data[OEnemy::rifleman + Object::Running] = { 11, 12 };
+	data[OEnemy::Rifleman + Object::Standing] = { 11, 12 };
+	data[OEnemy::Rifleman + Object::Attacking ] = { 11, 12 };
+	data[OEnemy::Rifleman + Object::Attacking + 5] = { 13, 14 };
+	data[OEnemy::Rifleman + Object::Attacking + 7] = { 15, 15 };
+	data[OEnemy::Rifleman + Object::Diving] = { 16, 16};
+	data[OEnemy::Rifleman + Object::Jumping] = { 17, 18 };
+	data[OEnemy::Tank + Object::Standing] = { 21, 23 };
+	data[OEnemy::Tank + Object::Attacking] = { 21, 23 };
+	data[OEnemy::Tank + Object::Attacking + 3] = { 34, 36 };
+	data[OEnemy::Tank + Object::Attacking + 5] = { 24, 26 };
+	data[OEnemy::Tank + Object::Attacking + 7] = { 30, 32 };
+	data[OEnemy::Tank + Object::Attacking + 9] = { 37, 39 };
+	data[OEnemy::Cannon + Object::Standing] = { 75, 83 };
+	data[OEnemy::Cannon + Object::Attacking] = { 81, 83 };
+	data[OEnemy::Cannon + Object::Attacking + 5] = { 49, 51 };
 
 
 	Animation* _animEnemy = new Animation(EnemyXML, EnemyPNG);

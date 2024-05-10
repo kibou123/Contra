@@ -13,6 +13,7 @@ Animation* OItem::GetAnimation()
 	data[OItem::L + Object::Jumping] = { 3 , 3 };
 	data[OItem::M + Object::Jumping] = { 4 , 4 };
 	data[OItem::S + Object::Jumping] = { 6 , 6 };
+	data[OItem::T + Object::Standing] = { 23 , 29 };
 
 	
 

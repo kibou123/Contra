@@ -23,6 +23,13 @@
 		<Sprite id="20_explosion_tank_Falcon_2"  x="107"  y="12"  w="24" h="28"/>
 		<Sprite id="21_explosion_tank_Falcon_3"  x="132"  y="11"  w="31" h="31"/>
 		<Sprite id="22_explosion_bullet"  x="40"  y="103"  w="6" h="6"/>
+		<Sprite id="23_Falcon_tank"  x="0"  y="125"  w="32" h="32"/>
+		<Sprite id="24_Falcon_tank"  x="34"  y="125"  w="32" h="32"/>
+		<Sprite id="25_Falcon_tank"  x="68"  y="125"  w="32" h="32"/>
+		<Sprite id="26_Falcon_tank"  x="102"  y="125"  w="32" h="32"/>
+		<Sprite id="27_Falcon_tank"  x="136"  y="125"  w="32" h="32"/>
+		<Sprite id="28_Falcon_tank"  x="170"  y="125"  w="32" h="32"/>
+		<Sprite id="29_Falcon_tank"  x="204"  y="125"  w="32" h="32"/>
 		
 		
 		

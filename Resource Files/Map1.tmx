@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2017.10.11" orientation="orthogonal" renderorder="right-down" width="208" height="15" tilewidth="16" tileheight="16" infinite="0" nextobjectid="98">
+<map version="1.10" tiledversion="1.10.1" orientation="orthogonal" renderorder="right-down" width="208" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="11" nextobjectid="172">
  <tileset firstgid="1" name="TitleSetMap1" tilewidth="16" tileheight="16" tilecount="90" columns="6">
   <image source="TitleSetMap1.png" width="96" height="240"/>
  </tileset>
- <layer name="BackGround" width="208" height="15">
+ <layer id="1" name="BackGround" width="208" height="15">
   <data encoding="csv">
 2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,2,2,2,2,2,2,2,2,3,2,2,2,2,2,2,2,2,4,2,2,2,2,6,2,6,3,2,2,2,2,2,2,2,2,2,5,2,2,2,2,2,2,2,6,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
 3,3,3,3,6,6,3,4,2,3,2,2,5,2,3,2,2,5,2,2,2,5,2,2,4,2,2,2,4,2,4,4,2,4,2,2,2,2,2,3,3,2,2,3,2,2,4,2,4,2,2,2,2,2,2,2,4,2,2,2,4,4,2,2,2,2,4,4,2,6,2,2,4,2,2,3,2,2,3,2,3,2,3,3,2,2,46,47,47,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,47,48,60,2,2,2,2,2,2,2,2,2,2,
@@ -22,7 +22,7 @@
 8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,10,11,11,11,11,24,8,8,8,8,8,8,8,8,8,8,8,8,8,8,10,11,11,11,11,24,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,8,10,11,11,17,21,22,21,22,21,22,21,22,21,22,21,22,21,22,21,22,21,22,21,22,26,27,26,27,26,26,27,26,27,26,27,22,21,50,50,22,21,22,21,22,21,22,21,22,21,22,21,22,21,50,50,22,21,22,21,22,21,22,21,22,21,22,21,22,21,50,50,22,21,22,21,50,50,22,21,22,21,22,21,22,21,22,21,22,21,22,21,22,21,22,21,22,83,87,87,87,87
 </data>
  </layer>
- <objectgroup name="Wall">
+ <objectgroup id="2" name="Wall">
   <object id="5" x="159.333" y="144.667" width="96.6667" height="16"/>
   <object id="6" x="256" y="176.667" width="31.3333" height="14.6667"/>
   <object id="7" x="352" y="177.333" width="33.3333" height="14"/>
@@ -59,32 +59,55 @@
   <object id="60" x="3136" y="144" width="32" height="16"/>
   <object id="61" x="3168" y="176" width="32" height="16"/>
   <object id="62" x="3008" y="208" width="240" height="16"/>
-  <object id="68" x="32" y="112" width="64" height="16"/>
-  <object id="69" x="96" y="112" width="160" height="16"/>
-  <object id="70" x="256" y="112" width="32" height="16"/>
-  <object id="71" x="288" y="112" width="32" height="16"/>
-  <object id="72" x="320" y="112" width="240" height="16"/>
+  <object id="96" x="32" y="111" width="736" height="15"/>
  </objectgroup>
- <objectgroup name="Player">
+ <objectgroup id="3" name="Player">
   <object id="82" x="43.4545" y="-3.81818" width="16" height="32"/>
  </objectgroup>
- <objectgroup name="Water">
+ <objectgroup id="4" name="Water">
   <object id="66" x="0" y="224" width="1776" height="16"/>
+  <object id="98" x="694" y="371"/>
  </objectgroup>
- <objectgroup name="Soldier">
-  <object id="28" x="224" y="80" width="32" height="48"/>
-  <object id="29" x="288" y="80" width="32" height="48"/>
-  <object id="30" x="352" y="96" width="32" height="32"/>
+ <objectgroup id="5" name="Soldier">
+  <object id="111" x="240" y="80" width="32" height="48"/>
+  <object id="114" x="288" y="80" width="32" height="48"/>
+  <object id="115" x="352" y="80" width="32" height="48"/>
  </objectgroup>
- <objectgroup name="Falcon">
-  <object id="88" name="S" x="84" y="94" width="16" height="16"/>
-  <object id="89" name="M" x="32" y="48" width="16" height="16"/>
-  <object id="91" name="R" x="64" y="48" width="16" height="16"/>
-  <object id="95" name="L" x="96" y="48" width="16" height="16"/>
-  <object id="96" name="F" x="128" y="48" width="16" height="16"/>
+ <objectgroup id="9" name="Tank">
+  <object id="132" x="1264" y="144" width="32" height="32"/>
+  <object id="144" x="1648" y="112" width="32" height="32"/>
+  <object id="145" x="1824" y="112" width="32" height="32"/>
+  <object id="166" x="2976" y="176" width="32" height="32"/>
+  <object id="167" x="3104" y="176" width="32" height="32"/>
  </objectgroup>
- <objectgroup name="RifleMan">
-  <object id="93" x="405" y="89" width="31" height="39"/>
-  <object id="94" x="424" y="336" width="8" height="5"/>
+ <objectgroup id="10" name="Cannon">
+  <object id="169" x="2752" y="112" width="32" height="32"/>
+  <object id="170" x="2176" y="48" width="32" height="32"/>
+  <object id="171" x="2032" y="144" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="6" name="Falcon">
+  <object id="107" name="R" x="256" y="0" width="16" height="16"/>
+  <object id="108" name="M" x="336" y="0" width="16" height="16"/>
+  <object id="109" name="Fly" x="240" y="32" width="16" height="16"/>
+  <object id="121" name="T" x="320" y="144" width="32" height="32"/>
+  <object id="123" name="S" x="1104" y="0" width="16" height="16"/>
+  <object id="129" name="Fly" x="1104" y="80" width="16" height="16"/>
+  <object id="136" name="T" x="1584" y="144" width="32" height="32"/>
+  <object id="142" name="F" x="1584" y="0" width="16" height="16"/>
+  <object id="148" name="S" x="2288" y="0" width="16" height="16"/>
+  <object id="150" name="R" x="2336" y="0" width="16" height="16"/>
+  <object id="152" name="L" x="2368" y="0" width="16" height="16"/>
+  <object id="154" name="T" x="2272" y="176" width="32" height="32"/>
+  <object id="162" name="Fly" x="2336" y="80" width="16" height="16"/>
+  <object id="164" name="Fly" x="2336" y="192" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup id="7" name="RifleMan">
+  <object id="116" x="304" y="176" width="32" height="48"/>
+  <object id="117" x="624" y="176" width="32" height="48"/>
+  <object id="133" x="1296" y="80" width="16" height="48"/>
+  <object id="135" name="1" x="1328" y="96" width="16" height="16"/>
+  <object id="138" name="1" x="1568" y="64" width="16" height="16"/>
+  <object id="139" x="1640.33" y="23.6667" width="0.333333" height="0.333333"/>
+  <object id="155" x="2352" y="112" width="32" height="32"/>
  </objectgroup>
 </map>

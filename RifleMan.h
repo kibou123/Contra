@@ -6,6 +6,6 @@ public:
 	RifleMan() : OEnemy() {};
 	~RifleMan();
 
-	void Init(D3DXVECTOR2 pos, int type = Enemytype::Soldier, int kind = 0);
+	void Init(D3DXVECTOR2 pos, int type = Enemytype::Rifleman, int kind = 0);
 };
 

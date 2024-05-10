@@ -28,12 +28,15 @@ Map::Map()
 	objectTag["Wall"] = OWall::Wall;
 	objectTag["Water"] = OWall::Water;
 	objectTag["Soldier"] = OEnemy::Soldier;
-	objectTag["RifleMan"] = OEnemy::rifleman;
+	objectTag["RifleMan"] = OEnemy::Rifleman;
 	objectTag["R"] = OItem::R;
 	objectTag["M"] = OItem::M;
 	objectTag["S"] = OItem::S;
 	objectTag["F"] = OItem::F;
 	objectTag["L"] = OItem::L;
+	objectTag["T"] = OItem::T;
+	objectTag["Tank"] = OEnemy::Tank;
+	objectTag["Cannon"] = OEnemy::Cannon;
 
 	for (int i = 0; i < info->numObjectGroups; i++)
 	{
@@ -100,9 +103,15 @@ Object* Map::CreateObject(MapObject* _mapobject)
 		case OEnemy::Soldier:
 			obj = new OEnemy();
 			break;
-		case OEnemy::rifleman:
+		case OEnemy::Rifleman:
 			obj = new RifleMan();
 			break;
+		/*case OEnemy::Tank:
+			obj = new Tank();
+			break;*/
+		/*case OEnemy::Cannon:
+			obj = new Cannon();
+			break;*/
 		default:
 			return NULL;
 		}
