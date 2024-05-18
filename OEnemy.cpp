@@ -7,7 +7,8 @@ Animation* OEnemy::GetAnimationEnemy()
 	Animation::DataAnimMap data;
 	// Soldier
 	data[OEnemy::Soldier + Object::Standing] = { 0 , 5};
-	data[OEnemy::Soldier + Object::Dying] = { 7 , 8 };
+	data[OEnemy::Soldier + Object::Dying] = { 86 , 88 };
+
 
 	data[OEnemy::Rifleman + Object::Standing] = { 11, 12 };
 	data[OEnemy::Rifleman + Object::Standing + 2] = { 13, 14 };//Khong co ban chi co gio sung thoi
@@ -17,17 +18,18 @@ Animation* OEnemy::GetAnimationEnemy()
 
 	data[OEnemy::Rifleman + Object::Diving] = { 16, 16};
 	data[OEnemy::Rifleman + Object::Jumping] = { 17, 18 };
+	data[OEnemy::Rifleman + Object::Dying] = { 86, 88 };
 
 	data[OEnemy::Tank + Object::Standing] = { 21, 23 };
-	data[OEnemy::Tank + Object::Standing + 2] = { 34, 36 };
+	data[OEnemy::Tank + Object::Standing + 2] = { 36, 38 };
 	data[OEnemy::Tank + Object::Standing + 4] = { 24, 26 };
 	data[OEnemy::Tank + Object::Standing + 6] = { 30, 32 };
-	data[OEnemy::Tank + Object::Standing + 8] = { 37, 39 };
+	data[OEnemy::Tank + Object::Standing + 8] = { 39, 41 };
 
-	data[OEnemy::Cannon + Object::Running] = { 77, 84 };
-	data[OEnemy::Cannon + Object::Standing] = { 83, 83 };
-	data[OEnemy::Cannon + Object::Standing + 2] = { 83, 83 };
-	data[OEnemy::Cannon + Object::Standing + 4] = { 51, 51 };
+	data[OEnemy::Cannon + Object::Running] = { 79, 86 };
+	data[OEnemy::Cannon + Object::Standing] = { 85, 85 };
+	data[OEnemy::Cannon + Object::Standing + 2] = { 85, 85 };
+	data[OEnemy::Cannon + Object::Standing + 4] = { 53, 53 };
 
 	Animation* _animEnemy = new Animation(EnemyXML, EnemyPNG);
 	_animEnemy->SetDataAnimation(data);

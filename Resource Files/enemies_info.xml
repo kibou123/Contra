@@ -84,7 +84,13 @@
 		<Sprite id="79_Cannon_animation_cam" x="34" y="488"  w="32" h="24"/>
 		<Sprite id="80_Cannon_animation_da" x="34" y="520"  w="32" h="24"/>
 		<Sprite id="81_Cannon_animation_đỏ" x="66" y="448"  w="32" h="32"/>
-		<Sprite id="82_Cannon_animation_cam" x="66" y="480" />
-		<Sprite id="83_Cannon_animation_da" x="66" y="512"  />
+		<Sprite id="82_Cannon_animation_cam" x="66" y="480" w="32" h="32"/>
+		<Sprite id="83_Cannon_animation_da" x="66" y="512"  w="32" h="32" />
+		<Sprite id="84_solider_die" x="1" y="550" w="24" h="24" />
+		<Sprite id="85_solider_die" x="27" y="548" w="28" h="28" />
+		<Sprite id="86_solider_die" x="57" y="546" w="32" h="32" />
+		<Sprite id="87_item_die" x="91" y="553" w="15" h="18" />
+		<Sprite id="88_item_die" x="108" y="549" w="23" h="27" />
+		<Sprite id="89_item_die" x="133" y="548" w="30" h="30" />
 
 	</Textures>
