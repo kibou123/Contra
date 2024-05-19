@@ -128,7 +128,7 @@ bool ObjectManager::TryDeleteObject(Object* obj)
 
 Object* ObjectManager::GetBullet()
 {
-	int maxB = 5;
+	int maxB = 30;
 	if (mBulletList.size() > maxB)
 	{
 		currBullet++;

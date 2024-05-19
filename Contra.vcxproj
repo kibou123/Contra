@@ -134,6 +134,7 @@
     <ClCompile Include="debug.cpp" />
     <ClCompile Include="DrawLine.cpp" />
     <ClCompile Include="DrawString.cpp" />
+    <ClCompile Include="dsutil.cpp" />
     <ClCompile Include="FuncItem.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Graphic.cpp" />
@@ -154,6 +155,7 @@
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="RifleMan.cpp" />
     <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Tank.cpp" />
     <ClCompile Include="TileSet.cpp" />
@@ -174,6 +176,8 @@
     <ClInclude Include="debug.h" />
     <ClInclude Include="DrawLine.h" />
     <ClInclude Include="DrawString.h" />
+    <ClInclude Include="dsutil.h" />
+    <ClInclude Include="dxutil.h" />
     <ClInclude Include="FuncItem.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameDefine.h" />
@@ -195,6 +199,7 @@
     <ClInclude Include="ObjectManager.h" />
     <ClInclude Include="RifleMan.h" />
     <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Tank.h" />
     <ClInclude Include="TileSet.h" />

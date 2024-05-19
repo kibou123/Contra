@@ -34,6 +34,9 @@
     <Filter Include="Object\Item">
       <UniqueIdentifier>{d2ae748e-a543-41db-9db7-01dfe2e91d7b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Global\Sound">
+      <UniqueIdentifier>{9656c19f-f404-4504-8c3d-bbf83db53dd5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TinyXML\tinystr.cpp">
@@ -148,6 +151,12 @@
     <ClCompile Include="Cannon.cpp">
       <Filter>Object\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Global\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="dsutil.cpp">
+      <Filter>Global\Sound</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TinyXML\tinystr.h">
@@ -255,6 +264,15 @@
     </ClInclude>
     <ClInclude Include="Cannon.h">
       <Filter>Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Global\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="dsutil.h">
+      <Filter>Global\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="dxutil.h">
+      <Filter>Global\Sound</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

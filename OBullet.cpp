@@ -34,6 +34,7 @@ OBullet::OBullet()
 OBullet::~OBullet()
 {
 	delete _anim;
+	delete gSound;
 }
 
 void OBullet::Init(int angle, float acceleration, D3DXVECTOR2 pos, int _type, int kind)
@@ -79,6 +80,10 @@ void OBullet::Fire(D3DXVECTOR2 pos)
 
 	this->SetBound(8, 8);
 	HP = 1;
+	if (gSound == NULL)
+		gSound = Object::PlaySoundA("./Resource Files/Sound/Fire.wav");
+	else
+		Object::PlaySoundA(gSound);
 }
 
 void OBullet::Controller()
