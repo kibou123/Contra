@@ -281,7 +281,7 @@ Object::tag Object::GetTag(string name)
 	{
 		return tag::Player;
 	}
-	if (name == "Wall" || name == "Water")
+	if (name == "Wall" || name == "Water" || name == "Bridge")
 	{
 		return tag::Wall;
 	}

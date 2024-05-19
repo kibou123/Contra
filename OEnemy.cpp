@@ -130,6 +130,11 @@ void OEnemy::Update(float gameTime, Keyboard* key)
 {
 	if (HP <= 0 && State != Object::Dying)
 	{
+		if (gSound == NULL)
+			gSound = Object::PlaySoundA("./Resource Files/Sound/Dead.wav", true);
+		else
+			Object::PlaySoundA(gSound);
+
 		velocity.x = (Player::GetInstance()->GetFlipFlag()?-1:1)*EnemySpeed;
 		StartJump(-Gravity / 2, 16, Gravity);
 		State = Object::Dying;

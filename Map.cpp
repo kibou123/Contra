@@ -2,6 +2,9 @@
 #include"TinyXML\tinyxml.h"
 #include "Player.h"
 #include "ObjectManager.h"
+#include "Water.h"
+#include "Bridge.h"
+
 #pragma warning(disable : 4996)
 
 Map::Map()
@@ -37,6 +40,7 @@ Map::Map()
 	objectTag["T"] = OItem::T;
 	objectTag["Tank"] = OEnemy::Tank;
 	objectTag["Cannon"] = OEnemy::Cannon;
+	objectTag["Bridge"] = OWall::Brigde;
 
 	for (int i = 0; i < info->numObjectGroups; i++)
 	{
@@ -92,6 +96,9 @@ Object* Map::CreateObject(MapObject* _mapobject)
 			break;
 		case OWall::Water:
 			obj = new Water();
+			break;
+		case OWall::Brigde:
+			obj = new Bridge();
 			break;
 		default:
 			return NULL;

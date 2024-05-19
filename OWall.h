@@ -11,6 +11,7 @@ public:
 	{
 		Wall = 100,
 		Water = 200,
+		Brigde = 300,
 	} _walltype = Walltype::Wall;
 
 	OWall();
