@@ -73,7 +73,8 @@ void ObjectManager::Update(float gameTime, Keyboard* key)
 	for (size_t i = 0; i < map->ListObject.size(); i++)
 	{
 		Object* obj = map->ListObject.at(i);
-		if (Collision::isCollision(obj->GetBound(), viewport->GetBoundViewport1()))
+		if (Collision::isCollision(obj->GetBound(), viewport->GetBoundViewport1())
+			|| obj->Tag == Object::Player)
 		{
 			listObject.push_back(obj);
 			obj->BeforeUpdate(gameTime, key);

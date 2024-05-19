@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="2017.10.11" orientation="orthogonal" renderorder="right-down" width="208" height="15" tilewidth="16" tileheight="16" infinite="0" nextobjectid="183">
+<map version="1.0" tiledversion="2017.10.11" orientation="orthogonal" renderorder="right-down" width="208" height="15" tilewidth="16" tileheight="16" infinite="0" nextobjectid="184">
  <tileset firstgid="1" name="TitleSetMap1" tilewidth="16" tileheight="16" tilecount="90" columns="6">
   <image source="TitleSetMap1.png" width="96" height="240"/>
  </tileset>
@@ -92,18 +92,14 @@
  <objectgroup name="Falcon">
   <object id="107" name="R" x="256" y="0" width="16" height="16"/>
   <object id="108" name="M" x="336" y="0" width="16" height="16"/>
-  <object id="109" name="Fly" x="240" y="32" width="16" height="16"/>
-  <object id="121" name="T" x="320" y="144" width="32" height="32"/>
   <object id="123" name="S" x="1104" y="0" width="16" height="16"/>
-  <object id="129" name="Fly" x="1104" y="80" width="16" height="16"/>
-  <object id="136" name="T" x="1584" y="144" width="32" height="32"/>
   <object id="142" name="F" x="1584" y="0" width="16" height="16"/>
   <object id="148" name="S" x="2288" y="0" width="16" height="16"/>
   <object id="150" name="R" x="2336" y="0" width="16" height="16"/>
   <object id="152" name="L" x="2368" y="0" width="16" height="16"/>
-  <object id="154" name="T" x="2272" y="176" width="32" height="32"/>
-  <object id="162" name="Fly" x="2336" y="80" width="16" height="16"/>
-  <object id="164" name="Fly" x="2336" y="192" width="16" height="16"/>
+ </objectgroup>
+ <objectgroup name="TankFalcon">
+  <object id="183" name="M" x="96" y="144" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="RifleMan">
   <object id="116" x="304" y="176" width="32" height="48"/>
