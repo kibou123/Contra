@@ -125,26 +125,14 @@ Object* Map::CreateObject(MapObject* _mapobject)
 		break;
 	case Object::Item:
 		objectType = objectTag[_mapobject->nameType];
-		switch (objectType)
+		if (_mapobject->name == "Falcon")
 		{
-		case OItem::R:
 			obj = new OItem();
-			break;
-		case OItem::M:
-			obj = new OItem();
-			break;
-		case OItem::S:
-			obj = new OItem();
-			break;
-		case OItem::F:
-			obj = new OItem();
-			break;
-		case OItem::L:
-			obj = new OItem();
-			break;
-		default:
-			return NULL;
+		}else if (_mapobject->name == "TankFalcon")
+		{
+			obj = new TankFalcon();
 		}
+		else return NULL;
 		break;
 	default:
 		return NULL;

@@ -10,7 +10,7 @@ public:
 	bool IsFire = false;
 	float Angle = 0;
 	D3DXVECTOR2 localPosition;
-
+	float time = 0;
 	Object* Master;
 	void DeleteBullet()
 	{

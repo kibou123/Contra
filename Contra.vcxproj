@@ -159,6 +159,7 @@
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Tank.cpp" />
+    <ClCompile Include="TankFalcon.cpp" />
     <ClCompile Include="TileSet.cpp" />
     <ClCompile Include="TinyXML\tinystr.cpp" />
     <ClCompile Include="TinyXML\tinyxml.cpp" />
@@ -204,6 +205,7 @@
     <ClInclude Include="Sound.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="Tank.h" />
+    <ClInclude Include="TankFalcon.h" />
     <ClInclude Include="TileSet.h" />
     <ClInclude Include="TinyXML\tinystr.h" />
     <ClInclude Include="TinyXML\tinyxml.h" />

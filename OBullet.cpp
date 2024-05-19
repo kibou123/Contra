@@ -78,6 +78,10 @@ void OBullet::Fire(D3DXVECTOR2 pos)
 	position = pos;
 	SetPositionStart(pos);
 
+	localPosition.x = 0;
+	localPosition.y = 0;
+	time = 0;
+
 	this->SetBound(8, 8);
 	HP = 1;
 	if (gSound == NULL)
@@ -165,8 +169,15 @@ void OBullet::Update(float gameTime, Keyboard* key)
 	UpdateAnimation(gameTime);
 
 	//Object::Update(gameTime, key);
-	position.x += cos(Angle / 180 * 3.14159265358979323846)* velocity.x * gameTime;
-	position.y = (tan(Angle / 180 * 3.14159265358979323846 ))* (position.x - positionStart.x) + positionStart.y;
+	if (_bulletType == Bullettype::FBullet)
+	{
+		time += gameTime;
+		localPosition.x = 10*cos(30*time);
+		localPosition.y = -10*sin(30*time);
+	}
+
+	position.x += gameTime* velocity.x * cos(Angle / 180 * 3.14159265358979323846) + localPosition.x;
+	position.y += gameTime * velocity.x * sin(Angle / 180 * 3.14159265358979323846) + localPosition.y;
 }
 
 void OBullet::UpdateAnimation(float gameTime)
