@@ -7,6 +7,11 @@
 
 Map::Map()
 {
+	if (gSound == NULL)
+		gSound = Object::PlaySoundA("./Resource Files/Sound/BG_Map1.wav");
+	else
+		Object::PlaySoundA(gSound);
+
 	info = new InfoMap(MapXML);
 
 	this->tileset = new TileSet(info->tileCount, info->tileColumns, info->tileWidth, info->tileHeight);
@@ -58,6 +63,12 @@ Map::Map()
 
 Map::~Map()
 {
+	if (gSound != NULL)
+	{
+		Object::StopSound(gSound);
+		delete gSound;
+		gSound = NULL;
+	}
 	delete tileset;
 	delete info;
 	int size = ListObject.size();

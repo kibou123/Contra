@@ -99,7 +99,7 @@
   <object id="152" name="L" x="2368" y="0" width="16" height="16"/>
  </objectgroup>
  <objectgroup name="TankFalcon">
-  <object id="183" name="M" x="96" y="144" width="32" height="32"/>
+  <object id="183" name="F" x="96" y="144" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="RifleMan">
   <object id="116" x="304" y="176" width="32" height="48"/>

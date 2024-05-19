@@ -134,7 +134,7 @@ void OEnemy::Update(float gameTime, Keyboard* key)
 	if (HP <= 0 && State != Object::Dying)
 	{
 		if (gSound == NULL)
-			gSound = Object::PlaySoundA("./Resource Files/Sound/Dead.wav", true);
+			gSound = Object::PlaySoundA("./Resource Files/Sound/Destroy_Enemy.wav");
 		else
 			Object::PlaySoundA(gSound);
 

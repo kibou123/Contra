@@ -35,7 +35,6 @@ void ObjectManager::InitDT()
 		map = NULL;
 	}
 	map = new Map();
-
 }
 
 //Update Game

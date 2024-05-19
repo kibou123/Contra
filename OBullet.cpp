@@ -85,7 +85,7 @@ void OBullet::Fire(D3DXVECTOR2 pos)
 	this->SetBound(8, 8);
 	HP = 1;
 	if (gSound == NULL)
-		gSound = Object::PlaySoundA("./Resource Files/Sound/Fire.wav");
+		gSound = Object::PlaySoundA("./Resource Files/Sound/Base_Bullet.wav");
 	else
 		Object::PlaySoundA(gSound);
 }
