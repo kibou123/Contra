@@ -25,6 +25,7 @@ public:
 public:
 	Player(); 
 	~Player();
+	void SetHP(int hp);
 
 	void Init();
 	void BeforeUpdate(float gameTime, Keyboard* key);

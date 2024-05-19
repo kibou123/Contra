@@ -107,7 +107,10 @@ void OEnemy::OnCollision(Object* obj)
 	switch (obj->Tag)
 	{
 	case Object::Player:
-		Player::GetInstance()->_playerController->DeadState();
+		if (obj->State != Dying)
+		{
+			Player::GetInstance()->SetHP(Damage);
+		}
 		return;
 	default:
 		return;

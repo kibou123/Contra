@@ -160,6 +160,9 @@
     <ClCompile Include="TankFalcon.cpp">
       <Filter>Object\Item</Filter>
     </ClCompile>
+    <ClCompile Include="Bridge.cpp">
+      <Filter>Object\Wall</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TinyXML\tinystr.h">
@@ -279,6 +282,9 @@
     </ClInclude>
     <ClInclude Include="TankFalcon.h">
       <Filter>Object\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Bridge.h">
+      <Filter>Object\Wall</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

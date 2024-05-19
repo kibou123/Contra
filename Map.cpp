@@ -2,8 +2,6 @@
 #include"TinyXML\tinyxml.h"
 #include "Player.h"
 #include "ObjectManager.h"
-#include "Water.h"
-#include "Bridge.h"
 
 #pragma warning(disable : 4996)
 

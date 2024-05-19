@@ -22,7 +22,6 @@ void PlayerCollision::OnCollision()
 {
 	//Check player collision by state
 	PlayCollisionF();
-
 	//CheckAllState
 	switch (_obj->Tag)
 	{
@@ -51,6 +50,8 @@ void PlayerCollision::CheckCollisionWall(Object* _wall)
 	OWall* wall = dynamic_cast<OWall*>(_wall);
 	switch (wall->_walltype)
 	{
+	case OWall::Brigde:
+		_side.x = Collision::NONE;
 	case OWall::Wall:
 		//
 		if (_side.x != Collision::NONE && wall->_kind == 1)//Leo len bo

@@ -23,6 +23,7 @@ public:
 	void UpdateAnimation(float gameTime);
 	void Controller();
 	D3DXVECTOR2 OnCollision(Object* obj, D3DXVECTOR2 side);
-	void SetBound(float width, float height);
+	RECT GetBound(float width, float height);
+	RECT GetBound();
 	void Render(Viewport* viewport);
 };

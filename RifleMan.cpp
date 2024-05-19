@@ -27,10 +27,15 @@ void RifleMan::Controller()
 		timeAttack = 0;
 		vector <Object*> listBullet;
 		FuncItem::GetBullet(listBullet, this);
+
+		D3DXVECTOR2 pos = _anim->GunPos(_enemyType + State + GetIndexGun());
+		pos.x = isFlip ? -pos.x : pos.x;
+		pos += position;
+
 		for (size_t i = 0; i < listBullet.size(); i++)
 		{
 			OBullet* bullet = dynamic_cast<OBullet*>(listBullet[i]);
-			bullet->Fire(position);
+			bullet->Fire(pos);
 			ListBullet.push_back(bullet);
 		}
 	}

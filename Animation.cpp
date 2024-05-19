@@ -135,7 +135,7 @@ void Animation::Update(float gameTime)
 D3DXVECTOR2 Animation::GunPos(int index)
 {
 	auto config = _infoAnim->GetInfoByIndex(_dataAnim[index].start);
-	if (config.sx > 0)
+	if (config.sx != 0)
 		return D3DXVECTOR2(config.sx, config.sy);
 	return D3DXVECTOR2(0, 0);
 }

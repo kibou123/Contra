@@ -73,8 +73,7 @@ void ObjectManager::Update(float gameTime, Keyboard* key)
 	for (size_t i = 0; i < map->ListObject.size(); i++)
 	{
 		Object* obj = map->ListObject.at(i);
-		if (Collision::isCollision(obj->GetBound(), viewport->GetBoundViewport())
-			|| obj->Tag == Object::Item * obj->position.x < viewport->GetBoundViewport().right+ 20)
+		if (Collision::isCollision(obj->GetBound(), viewport->GetBoundViewport1()))
 		{
 			listObject.push_back(obj);
 			obj->BeforeUpdate(gameTime, key);
@@ -93,6 +92,7 @@ void ObjectManager::Update(float gameTime, Keyboard* key)
 		listObject.at(i)->Update(gameTime, key);
 
 	//Update Viewport theo vị trí Player
+	if (Player::GetInstance()->State != Object::Dying)
 	viewport->Update(gameTime, key, Player::GetInstance()->GetPosition());
 }
 

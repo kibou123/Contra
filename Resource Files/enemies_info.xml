@@ -13,9 +13,9 @@
 		<Sprite id="10_soldier_No_attack" x="677" y="327"  w="16" h="32"/>
 		<Sprite id="11_rifleman_stand_1" x="460" y="277"  w="24" h="39"/>
 		<Sprite id="12_rifleman_stand_2" x="486" y="277"  w="24" h="39"/>
-		<Sprite id="13_rifleman_attack_cross_up_1" x="510" y="277"  w="24" h="39" />
+		<Sprite id="13_rifleman_attack_cross_up_1" x="510" y="277"  w="24" h="39" sx="14"  sy="40"/>
 		<Sprite id="14_rifleman_attack_cross_up_2" x="535" y="277"  w="24" h="39"/>
-		<Sprite id="15_rifleman_attack_cross_down" x="564" y="277"  w="24" h="39" />
+		<Sprite id="15_rifleman_attack_cross_down" x="564" y="277"  w="24" h="39" sx="18"  sy="40"/>
 		<Sprite id="16_rifleman_hide" x="590" y="277"  w="24" h="39"/>
 		<Sprite id="17_rifleman_appear_1" x="616" y="277"  w="24" h="39"/>
 		<Sprite id="18_rifleman_appear_2" x="642" y="277"  w="24" h="39" />

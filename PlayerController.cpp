@@ -64,7 +64,8 @@ void PlayerController::JumpState()
 void PlayerController::DeadState()
 {
 	player->State = Object::Dying;
-
+	player->velocity.x = -RunSpeed;
+	player->JumpState();
 }
 
 //Trạng thái ngồi
@@ -185,13 +186,14 @@ void PlayerController::PlayControllerF()
 void PlayerController::Update(float gameTime, Keyboard* key)
 {
 	this->key = key;
-	if (player->State == Object::Dying) return;
 
 	if (player->State != Object::Jumping) {
 		player->SetVelocityY(Gravity);
 	}
 
 	this->PlayControllerF();
+	if (player->State == Object::Dying) return;
+
 	MoveX();
 	ArrowState();
 	timeReload += gameTime;
