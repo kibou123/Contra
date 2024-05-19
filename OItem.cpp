@@ -8,15 +8,16 @@ Animation* OItem::GetAnimation()
 	//Tạo Animation
 	Animation::DataAnimMap data;
 	// R
+	data[OItem::R + Object::Standing + 1] = { 23 , 23};
+	data[OItem::R + Object::Standing + 2] = { 24 , 26};
 	data[OItem::R + Object::Running] = { 0 , 0 };
+	data[OItem::R + Object::Running + 1] = { 27 , 29 };
+
 	data[OItem::R + Object::Jumping] = { 5 , 5 };
-	data[OItem::F + Object::Jumping] = { 2 , 2 };
-	data[OItem::L + Object::Jumping] = { 3 , 3 };
 	data[OItem::M + Object::Jumping] = { 4 , 4 };
 	data[OItem::S + Object::Jumping] = { 6 , 6 };
-	data[OItem::T + Object::Standing] = { 23 , 29 };
-
-	
+	data[OItem::F + Object::Jumping] = { 2 , 2 };
+	data[OItem::L + Object::Jumping] = { 3 , 3 };
 
 
 	Animation* _animItem = new Animation(ItemXML, ItemPNG);
@@ -39,13 +40,14 @@ void OItem::Init(D3DXVECTOR2 pos, int _type, int kind)
 {
 	AllowDraw = true;
 	_itemType = (ItemType)_type;
-	_kind = kind;
+	_kind = 0;
 	position = pos;
 	velocity = D3DXVECTOR2(EnemySpeed/2, 0);
 	SetState(Object::Running);
 	this->SetBound(15, 32);
 	HP = 1;
 	type = _type;
+	isImmortal = false;
 }
 
 void OItem::Controller()
@@ -86,10 +88,13 @@ void OItem::OnCollision(Object* obj)
 	switch (obj->Tag)
 	{
 	case Object::Bullet:
-		if (State == Running && type != OBullet::EnemyBullet)
+		if (type != OBullet::EnemyBullet)
 		{
+			if (State == Running)
+			{
+				HP = 0;
+			}
 			obj->State = Dying;
-			HP = 0;
 		}
 		break;
 	case Object::Player:
@@ -136,9 +141,13 @@ void OItem::Update(float gameTime, Keyboard* key)
 
 void OItem::UpdateAnimation(float gameTime)
 {
-	_anim->NewAnimationByIndex(_itemType + this->State);
+	if (State == Jumping)
+		_anim->NewAnimationByIndex(_itemType + this->State);
+	else
+		_anim->NewAnimationByIndex(OItem::R + this->State + _kind + isImmortal);
+
 	_anim->SetPosition(D3DXVECTOR2(position.x, position.y + Height / 2));
-	_anim->SetFlipFlag(velocity.x > 0);
+	//_anim->SetFlipFlag(velocity.x > 0);
 	_anim->Update(gameTime);
 }
 

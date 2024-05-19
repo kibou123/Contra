@@ -7,6 +7,9 @@ using namespace Define;
 class OItem : public Object
 {
 public:
+	bool isImmortal = false;
+	float immortalTime = 0;
+public:
 	enum ItemType
 	{
 		R = 100,

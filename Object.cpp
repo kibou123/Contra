@@ -289,7 +289,7 @@ Object::tag Object::GetTag(string name)
 	{
 		return tag::Enemy;
 	}
-	if (name == "Falcon")
+	if (name == "Falcon" || name == "TankFalcon")
 	{
 		return tag::Item;
 	}
