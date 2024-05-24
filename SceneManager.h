@@ -13,7 +13,17 @@ static SceneManager* _sceneManager;
 public:
 	bool isEnd;
 	float endTime;
+	float timedelay;
+	Sprite* sprite = new Sprite("./Resource Files/intro.png");
+	GSound* gSound;
 
+	enum SceneType
+	{
+		Intro = 0,
+		Wait = 1,
+		End = 2,
+		Play = 3,
+	} sceneType = SceneType::Intro;
 public:
 	SceneManager();
 	~SceneManager();

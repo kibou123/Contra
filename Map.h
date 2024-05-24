@@ -15,7 +15,6 @@ using namespace Define;
 class Map
 {
 public:
-	GSound* gSound;
 	//tính theo tile
 	int WidthMap, HeightMap;
 	TileSet* tileset;

@@ -174,7 +174,7 @@ PDIRECT3DSURFACE9 Graphic::LoadSurface(string path, D3DCOLOR transcolor)
 void Graphic::Begin()
 {
 	//Vẽ cửa sổ vẽ bằng màu đen (156, 252, 240) màu xanh
-	this->D3Ddev->Clear(1, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(156, 252, 240), 0, NULL);
+	this->D3Ddev->Clear(1, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 0), 0, NULL);
 	//Bắt đầu vẽ
 	
 	this->D3Ddev->BeginScene();

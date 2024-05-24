@@ -153,10 +153,13 @@ void Player::Update(float gameTime, Keyboard* key)
 	immortalTime -= gameTime;
 	if (immortalTime < 2 && State == Dying)
 	{
-		Init();
-		position.x = ObjectManager::GetInstance()->GetViewPort()->GetBoundViewport().left + 20;
-		position.y = ObjectManager::GetInstance()->GetViewPort()->GetBoundViewport().top + 20;
-		SetPositionStart(position);
+		if (_life > 0)
+		{
+			Init();
+			position.x = ObjectManager::GetInstance()->GetViewPort()->GetBoundViewport().left + 20;
+			position.y = ObjectManager::GetInstance()->GetViewPort()->GetBoundViewport().top + 20;
+			SetPositionStart(position);
+		}
 	}
 	if (immortalTime < 0)
 	{
@@ -219,7 +222,7 @@ void Player::SetBound(float width, float height)
 void Player::Render(Viewport* viewport)
 {
 	//Vẽ Player
-	if (!(isImmortal && (((int)(immortalTime /0.05)) % 2 == 1)))//Battunháy
+	if (!(isImmortal && (((int)(immortalTime /0.03)) % 2 == 1)))//Battunháy
 	if (AllowDraw)
 	{
 		_anim->Render(viewport);

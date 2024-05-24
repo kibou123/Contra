@@ -84,10 +84,30 @@ void OBullet::Fire(D3DXVECTOR2 pos)
 
 	this->SetBound(8, 8);
 	HP = 1;
-	if (gSound == NULL)
+
+	if (gSound != NULL)
+	{
+		Object::StopSound(gSound);
+		delete gSound;
+		gSound = NULL;
+	}
+	switch (_bulletType)
+	{
+	case NormalBullet:
 		gSound = Object::PlaySoundA("./Resource Files/Sound/Base_Bullet.wav");
-	else
-		Object::PlaySoundA(gSound);
+		break;
+	case RedBullet:
+		gSound = Object::PlaySoundA("./Resource Files/Sound/MBullet.wav");
+		break;
+	case FBullet:
+		gSound = Object::PlaySoundA("./Resource Files/Sound/FBullet.wav");
+		break;
+	case LBullet:
+		gSound = Object::PlaySoundA("./Resource Files/Sound/LBullet.wav");
+		break;
+	default:
+		break;
+	}
 }
 
 void OBullet::Controller()

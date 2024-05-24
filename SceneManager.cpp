@@ -16,34 +16,149 @@ SceneManager::SceneManager()
 }
 SceneManager::~SceneManager()
 {
+	if (gSound != NULL)
+	{
+		Object::StopSound(gSound);
+		delete gSound;
+		gSound = NULL;
+	}
+	delete sprite;
 }
 
 //Load Data Game
 void SceneManager::InitDT()
 {
-	ObjectManager::GetInstance()->InitDT();
+	sceneType = Intro;
+	if (gSound != NULL)
+	{
+		Object::StopSound(gSound);
+		delete gSound;
+		gSound = NULL;
+	}
+	gSound = Object::PlaySoundA("./Resource Files/Sound/Intro.wav");
+	//ObjectManager::GetInstance()->InitDT();
 }
 
 //Update các scene game Update lớn nhất
 void SceneManager::Update(float gameTime, Keyboard* key)
 {
-	//CheckEnd
-	if (isEnd)
+	RECT rect;
+	rect.left = sceneType * GameWidth;
+	rect.top = 0;
+	rect.right = rect.left + GameWidth;
+	rect.bottom = GameHeight;
+	sprite->SetRect(rect);
+	sprite->SetPosition(D3DXVECTOR2(0, 0));
+
+	timedelay += gameTime;
+	float posx = 240;
+	switch (sceneType)
 	{
-		//Animation Player
-		Player::GetInstance()->BeforeUpdate(gameTime, key);
-		Player::GetInstance()->Update(gameTime, key);
-		if (endTime > 0)
-			endTime -= gameTime;
+	case SceneManager::Intro:
+		//Reset
+		if (timedelay > 5 && timedelay < 10)
+		{
+			timedelay = 0.0f;
+		}
+		//chạy từ phải qua
+		if (key->IsKeyDown(Dik_START) && timedelay > 0.2 && timedelay < 2.1)
+		{
+			timedelay = 2.1f;
+		}
+
+		posx -= timedelay*(GameWidth/2);
+		posx = posx <= 0 ? 0 : posx;
+		sprite->SetPosition(D3DXVECTOR2(posx, 0));
+		//
+		if (key->IsKeyDown(Dik_START) && timedelay > 2.2)
+		{
+			timedelay = 10.0f;
+		}
+
+		if (timedelay > 11)
+		{
+			sceneType = Wait;
+			timedelay = 0;
+			ObjectManager::GetInstance()->InitDT();
+		}
+
+		if (timedelay > 10 && timedelay < 11 && (timedelay/2) && (((int)(timedelay / 0.05)) % 2 == 1))
+		{
+			rect.top = GameHeight;
+			rect.bottom = GameHeight*2;
+			sprite->SetRect(rect);
+		}
+		break;
+	case SceneManager::Wait:
+		if (((int)(timedelay / 0.2)) % 2 == 1)
+		{
+			rect.top = GameHeight;
+			rect.bottom = GameHeight * 2;
+			sprite->SetRect(rect);
+		}
+		if (timedelay > 3)
+		{
+			if (gSound != NULL)
+			{
+				Object::StopSound(gSound);
+				delete gSound;
+				gSound = NULL;
+			}
+			gSound = Object::PlaySoundA("./Resource Files/Sound/BG_Map1.wav", true);
+
+			sceneType = Play;
+			Player::GetInstance()->_life = StartLive;
+			//Player::GetInstance()->Init();
+		}
+		break;
+	case SceneManager::Play:
+		ObjectManager::GetInstance()->Update(gameTime, key);
+		if (Player::GetInstance()->_life <= 0 && timedelay > 3)
+		{
+			timedelay = 0.0f;
+		}
 		else
 		{
-			ObjectManager::GetInstance()->InitDT();
-			Player::GetInstance()->Init();
-			isEnd = false;
+			rect.right = rect.left + 8 + Player::GetInstance()->_life * 13;
+			rect.bottom = 25;
+			sprite->SetRect(rect);
 		}
+		if (timedelay > 2 && timedelay < 3)
+		{
+			if (gSound != NULL)
+			{
+				Object::StopSound(gSound);
+				delete gSound;
+				gSound = NULL;
+			}
+			gSound = Object::PlaySoundA("./Resource Files/Sound/Game_Over.wav");
+			sceneType = End;
+		}
+		break;
+	case SceneManager::End:
+		if (((int)(timedelay / 0.2)) % 2 == 1)
+		{
+			rect.top = GameHeight;
+			rect.bottom = GameHeight * 2;
+			sprite->SetRect(rect);
+		}
+		if (key->IsKeyDown(Dik_START) && timedelay > 1)
+		{
+			sceneType = Intro;
+			if (gSound != NULL)
+			{
+				Object::StopSound(gSound);
+				delete gSound;
+				gSound = NULL;
+			}
+			gSound = Object::PlaySoundA("./Resource Files/Sound/Intro.wav");
+			timedelay = 0.0f;
+		}
+		break;
+	default:
+		break;
 	}
 
-	ObjectManager::GetInstance()->Update(gameTime, key);
 }
 
 void SceneManager::StartEnd(float time)
@@ -56,5 +171,9 @@ void SceneManager::StartEnd(float time)
 //Vẽ Object lên màn hình
 void SceneManager::Render()
 {
-	ObjectManager::GetInstance()->Render();
+	if (sceneType == Play)
+	{
+		ObjectManager::GetInstance()->Render();
+	}
+	sprite->Render();
 }
