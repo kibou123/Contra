@@ -26,7 +26,7 @@ ObjectManager::~ObjectManager()
 }
 
 //Load Data Game
-void ObjectManager::InitDT()
+void ObjectManager::InitDT(int level)
 {
 	//load Objecct
 	if (map != nullptr)
@@ -34,7 +34,8 @@ void ObjectManager::InitDT()
 		delete map;
 		map = NULL;
 	}
-	map = new Map();
+	currBullet = 0;
+	map = new Map(level);
 }
 
 //Update Game
@@ -158,7 +159,7 @@ void ObjectManager::Render()
 		DrawLine::GetInstance()->SetColor(map->ListObject.at(i)->Tag*70, map->ListObject.at(i)->type * 50, map->ListObject.at(i)->_kind * 80);
 		DrawLine::GetInstance()->DrawRect(map->ListObject.at(i)->GetBound());
 	}
-
+	Player::GetInstance()->Render(viewport);
 	//GUI
 	GUI::GetInstance()->Render();
 }

@@ -37,6 +37,9 @@
     <Filter Include="Global\Sound">
       <UniqueIdentifier>{9656c19f-f404-4504-8c3d-bbf83db53dd5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Object\Enemy\Boss">
+      <UniqueIdentifier>{46f245e2-ed33-44bc-8730-53ea0bbed8f9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TinyXML\tinystr.cpp">
@@ -163,6 +166,12 @@
     <ClCompile Include="Bridge.cpp">
       <Filter>Object\Wall</Filter>
     </ClCompile>
+    <ClCompile Include="Boss1.cpp">
+      <Filter>Object\Enemy\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="GunBoss.cpp">
+      <Filter>Object\Enemy\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TinyXML\tinystr.h">
@@ -285,6 +294,12 @@
     </ClInclude>
     <ClInclude Include="Bridge.h">
       <Filter>Object\Wall</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss1.h">
+      <Filter>Object\Enemy\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="GunBoss.h">
+      <Filter>Object\Enemy\Boss</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

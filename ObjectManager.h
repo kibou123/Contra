@@ -32,7 +32,7 @@ public:
 
 	static ObjectManager* GetInstance();
 	//Load Data Game
-	void InitDT();
+	void InitDT(int level);
 
 	void Update(float gameTime, Keyboard* key);
 	void StartPause(float time);

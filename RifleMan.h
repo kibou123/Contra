@@ -8,6 +8,6 @@ public:
 
 	void Init(D3DXVECTOR2 pos, int type = Enemytype::Rifleman, int kind = 0);
 	void Controller();
-	void AttackState();
+	virtual void AttackState();
 };
 

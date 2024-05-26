@@ -9,6 +9,7 @@ void Cannon::Init(D3DXVECTOR2 pos, int type, int kind)
 	maxBullet = 3;
 	HP = 10;
 	reload = 0.3;
+	Damage = 0;
 }
 
 void Cannon::Controller()

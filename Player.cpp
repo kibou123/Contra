@@ -137,7 +137,7 @@ void Player::OnCollision(Object* obj)
 void Player::SetHP(int hp)
 {
 	if (isImmortal) return;
-	HP = -hp;
+	HP -= hp;
 	if (HP <= 0)
 	{
 		_life -= 1;
@@ -151,13 +151,18 @@ void Player::SetHP(int hp)
 void Player::Update(float gameTime, Keyboard* key)
 {
 	immortalTime -= gameTime;
+	RECT rectView = ObjectManager::GetInstance()->GetViewPort()->GetBoundViewport();
+	if (position.y < rectView.bottom && State != Dying)
+	{
+		SetHP(HP);
+	}
 	if (immortalTime < 2 && State == Dying)
 	{
 		if (_life > 0)
 		{
 			Init();
-			position.x = ObjectManager::GetInstance()->GetViewPort()->GetBoundViewport().left + 20;
-			position.y = ObjectManager::GetInstance()->GetViewPort()->GetBoundViewport().top + 20;
+			position.x = rectView.left + 20;
+			position.y = rectView.top + 20;
 			SetPositionStart(position);
 		}
 	}

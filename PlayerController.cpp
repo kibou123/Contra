@@ -28,7 +28,7 @@ PlayerController::~PlayerController()
 void PlayerController::StandState() //reset all state
 {
 	player->State = key->GIsKeyUp(Dik_LEFT) && key->GIsKeyUp(DIK_RIGHT) ? Object::Standing : Object::Running;
-	player->SetBound(25, 35);
+	player->SetBound(16, 35);
 
 	if (key->IsKeyDown(Dik_JUMP))
 	{

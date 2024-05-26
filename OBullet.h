@@ -15,6 +15,8 @@ public:
 	void DeleteBullet()
 	{
 		if (Master == NULL) return;
+		if (Master->ListBullet.size() == 0) return;
+
 		auto it = std::find(Master->ListBullet.begin(), Master->ListBullet.end(), this);
 		if (it != Master->ListBullet.end())
 		{

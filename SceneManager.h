@@ -12,6 +12,7 @@ static SceneManager* _sceneManager;
 
 public:
 	bool isEnd;
+	int level = 1;
 	float endTime;
 	float timedelay;
 	Sprite* sprite = new Sprite("./Resource Files/intro.png");
@@ -36,6 +37,7 @@ public:
 	void StartEnd(float time = timeEnd);
 	//Vẽ Object lên màn hình
 	void Render();
+	void Map(int level = 1);
 	static SceneManager* GetInstance();
 };
 

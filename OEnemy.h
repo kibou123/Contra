@@ -8,6 +8,9 @@ class OEnemy : public Object
 {
 public:
 	float timeAttack, reload;
+	bool isExplode;
+	float timeExplode;
+	Object* explode;
 
 	enum Enemytype
 	{
@@ -15,6 +18,8 @@ public:
 		Rifleman =  200,
 		Tank = 300,
 		Cannon = 400,
+		Boss = 500,
+		Gunboss = 600,
 	} _enemyType = Enemytype::Soldier;
 
 	OEnemy();
@@ -29,6 +34,7 @@ public:
 	void OnCollision(Object* obj);
 	void SetBound(float width, float height);
 	void Render(Viewport* viewport);
+	void StartExplode();
 	static Animation* GetAnimationEnemy();
 
 	int GetIndexGun()

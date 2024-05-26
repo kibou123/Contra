@@ -38,10 +38,21 @@ void SceneManager::InitDT()
 	gSound = Object::PlaySoundA("./Resource Files/Sound/Intro.wav");
 	//ObjectManager::GetInstance()->InitDT();
 }
-
+void SceneManager::Map(int level)
+{
+	isEnd = true;
+	sceneType = Wait;
+	timedelay = 0;
+	this->level = level;
+}
 //Update các scene game Update lớn nhất
 void SceneManager::Update(float gameTime, Keyboard* key)
 {
+	if (key->IsKeyDown(DIK_1))
+	{
+		Map();
+	}
+
 	RECT rect;
 	rect.left = sceneType * GameWidth;
 	rect.top = 0;
@@ -55,6 +66,7 @@ void SceneManager::Update(float gameTime, Keyboard* key)
 	switch (sceneType)
 	{
 	case SceneManager::Intro:
+		isEnd = false;
 		//Reset
 		if (timedelay > 5 && timedelay < 10)
 		{
@@ -77,9 +89,7 @@ void SceneManager::Update(float gameTime, Keyboard* key)
 
 		if (timedelay > 11)
 		{
-			sceneType = Wait;
-			timedelay = 0;
-			ObjectManager::GetInstance()->InitDT();
+			Map();
 		}
 
 		if (timedelay > 10 && timedelay < 11 && (timedelay/2) && (((int)(timedelay / 0.05)) % 2 == 1))
@@ -90,6 +100,11 @@ void SceneManager::Update(float gameTime, Keyboard* key)
 		}
 		break;
 	case SceneManager::Wait:
+		if (isEnd)
+		{
+			isEnd = false;
+			ObjectManager::GetInstance()->InitDT(level);
+		}
 		if (((int)(timedelay / 0.2)) % 2 == 1)
 		{
 			rect.top = GameHeight;
@@ -158,7 +173,6 @@ void SceneManager::Update(float gameTime, Keyboard* key)
 	default:
 		break;
 	}
-
 }
 
 void SceneManager::StartEnd(float time)

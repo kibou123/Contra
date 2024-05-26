@@ -5,9 +5,12 @@
 
 #pragma warning(disable : 4996)
 
-Map::Map()
+Map::Map(int level)
 {
-	info = new InfoMap(MapXML);
+	if (level == 1)
+		info = new InfoMap(MapXML1);
+	else
+		info = new InfoMap(MapXML3);
 
 	this->tileset = new TileSet(info->tileCount, info->tileColumns, info->tileWidth, info->tileHeight);
 	position = D3DXVECTOR2(0, 0);
@@ -30,6 +33,7 @@ Map::Map()
 	objectTag["Water"] = OWall::Water;
 	objectTag["Soldier"] = OEnemy::Soldier;
 	objectTag["RifleMan"] = OEnemy::Rifleman;
+	objectTag["Boss"] = OEnemy::Boss;
 	objectTag["R"] = OItem::R;
 	objectTag["M"] = OItem::M;
 	objectTag["S"] = OItem::S;
@@ -116,6 +120,9 @@ Object* Map::CreateObject(MapObject* _mapobject)
 			break;
 		case OEnemy::Cannon:
 			obj = new Cannon();
+			break;
+		case OEnemy::Boss:
+			obj = new Boss1();
 			break;
 		default:
 			return NULL;

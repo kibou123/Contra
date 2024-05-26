@@ -6,6 +6,7 @@ void Tank::Init(D3DXVECTOR2 pos, int type, int kind)
 	this->SetBound(32, 32);
 	maxBullet = 1;
 	HP = 10;
+	Damage = 0;
 }
 
 void Tank::Controller()

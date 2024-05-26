@@ -95,5 +95,8 @@
 		<Sprite id="92_bridge" x="1" y="589" w="32" h="31" />
 		<Sprite id="93_bridge" x="35" y="589" w="32" h="31" />
 		<Sprite id="94_bridge" x="69" y="589" w="32" h="31" />
-
+		<Sprite id="95_Boss_stand" x="461" y="589" w="32" h="31" />
+		<Sprite id="96_Boss_die" x="461" y="189" w="96" h="42" />
+		<Sprite id="97_GunBoss" x="488" y="232" w="16" h="8" />
+		<Sprite id="98_GunBossDie" x="459" y="232" w="16" h="8" />
 	</Textures>

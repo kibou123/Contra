@@ -33,6 +33,12 @@ Animation* OEnemy::GetAnimationEnemy()
 	data[OEnemy::Cannon + Object::Standing + 4] = { 53, 53 };
 	data[OEnemy::Cannon + Object::Dying] = { 89, 91 };
 
+	data[OEnemy::Boss + Object::Standing] = { 95, 95 };
+	data[OEnemy::Boss + Object::Dying] = { 96, 96 };
+
+	data[OEnemy::Gunboss + Object::Standing] = { 97, 97 };
+	data[OEnemy::Gunboss + Object::Dying] = { 98, 98 };
+
 	Animation* _animEnemy = new Animation(EnemyXML, EnemyPNG);
 	_animEnemy->SetDataAnimation(data);
 	return _animEnemy;
@@ -157,6 +163,21 @@ void OEnemy::Update(float gameTime, Keyboard* key)
 	timeAttack += gameTime;
 }
 
+void OEnemy::StartExplode()
+{
+	if (explode == NULL)
+	{
+		explode = new OEnemy();
+	}
+	isExplode = true;
+	explode->AllowDraw = true;
+	timeExplode = 0;
+	explode->Init(position, OEnemy::Cannon, 0);
+	this->SetBound(0, 0);
+	explode->State = Dying;
+	explode->SetVelocity(0, 0);
+}
+
 void OEnemy::UpdateAnimation(float gameTime)
 {
 	_anim->NewAnimationByIndex(_enemyType + this->State + GetIndexGun());
@@ -187,4 +208,6 @@ void OEnemy::Render(Viewport* viewport)
 	{
 		_anim->Render(viewport);
 	}
+	if (explode != NULL)
+		explode->Render(viewport);
 }

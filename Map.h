@@ -3,7 +3,7 @@
 #include "TileSet.h"
 #include "GameDefine.h"
 #include "InfoMap.h"
-#include "Cannon.h"
+#include "Boss1.h"
 #include "Tank.h"
 #include "TankFalcon.h"
 #include "BinaryTree.h"
@@ -25,7 +25,7 @@ public:
 
 	BinaryTree* Tree;
 public:
-	Map();
+	Map(int level = 1);
 	~Map();
 
 	Object* CreateObject(MapObject* _mapobject);
