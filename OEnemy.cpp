@@ -27,7 +27,7 @@ Animation* OEnemy::GetAnimationEnemy()
 	data[OEnemy::Tank + Object::Standing + 8] = { 39, 41 };
 	data[OEnemy::Tank + Object::Dying] = { 89, 91 };
 
-	data[OEnemy::Cannon + Object::Running] = { 79, 86 };
+	data[OEnemy::Cannon + Object::Running] = { 77, 85 };
 	data[OEnemy::Cannon + Object::Standing] = { 85, 85 };
 	data[OEnemy::Cannon + Object::Standing + 2] = { 85, 85 };
 	data[OEnemy::Cannon + Object::Standing + 4] = { 53, 53 };
