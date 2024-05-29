@@ -4,6 +4,8 @@
 class GunBoss : public OEnemy
 {
 public:
+	Object* bullet = NULL;
+public:
 	GunBoss() : OEnemy() {};
 	~GunBoss();
 

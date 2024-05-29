@@ -40,7 +40,7 @@ void Boss1::BeforeUpdate(float gameTime, Keyboard* key)
 		this->SetBound(0, 0);
 		return;
 	}
-	this->SetBound(16, 32);
+	this->SetBound(16, 20);
 	this->Controller();
 }
 
@@ -69,6 +69,14 @@ void Boss1::Update(float gameTime, Keyboard* key)
 		StartExplode();
 		timeAttack = 0;
 		reload = 3;
+
+		if (gSound != NULL)
+		{
+			Object::StopSound(gSound);
+			delete gSound;
+			gSound = NULL;
+		}
+		gSound = Object::PlaySoundA("./Resource Files/Sound/Destroy_Boss.wav");
 	}
 	if (reload == 3)
 	{

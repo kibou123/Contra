@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "FuncItem.h"
 #include "Obullet.h"
+#include "OEnemy.h"
 
 Animation* OItem::GetAnimation()
 {
@@ -19,6 +20,7 @@ Animation* OItem::GetAnimation()
 	data[OItem::F + Object::Jumping] = { 2 , 2 };
 	data[OItem::L + Object::Jumping] = { 3 , 3 };
 
+	data[OEnemy::BulletBoss + Object::Jumping] = { 30 , 30 };
 
 	Animation* _animItem = new Animation(ItemXML, ItemPNG);
 	_animItem->SetDataAnimation(data);

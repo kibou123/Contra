@@ -30,7 +30,7 @@
 		<Sprite id="27_Falcon_tank"  x="136"  y="125"  w="32" h="32"/>
 		<Sprite id="28_Falcon_tank"  x="170"  y="125"  w="32" h="32"/>
 		<Sprite id="29_Falcon_tank"  x="204"  y="125"  w="32" h="32"/>
-		
+		<Sprite id="30_BulletBoss"  x="49"  y="101"  w="10" h="10"/>
 		
 		
 	</Textures>

@@ -131,6 +131,7 @@
     <ClCompile Include="BinaryTree.cpp" />
     <ClCompile Include="Boss1.cpp" />
     <ClCompile Include="Bridge.cpp" />
+    <ClCompile Include="BulletBoss1.cpp" />
     <ClCompile Include="Cannon.cpp" />
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="debug.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="BinaryTree.h" />
     <ClInclude Include="Boss1.h" />
     <ClInclude Include="Bridge.h" />
+    <ClInclude Include="BulletBoss1.h" />
     <ClInclude Include="Cannon.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="debug.h" />

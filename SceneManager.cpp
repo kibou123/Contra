@@ -44,6 +44,12 @@ void SceneManager::Map(int level)
 	sceneType = Wait;
 	timedelay = 0;
 	this->level = level;
+	if (gSound != NULL)
+	{
+		Object::StopSound(gSound);
+		delete gSound;
+		gSound = NULL;
+	}
 }
 //Update các scene game Update lớn nhất
 void SceneManager::Update(float gameTime, Keyboard* key)
@@ -119,7 +125,10 @@ void SceneManager::Update(float gameTime, Keyboard* key)
 				delete gSound;
 				gSound = NULL;
 			}
-			gSound = Object::PlaySoundA("./Resource Files/Sound/BG_Map1.wav", true);
+			if (level == 1)
+				gSound = Object::PlaySoundA("./Resource Files/Sound/BG_Map1.wav", true);
+			else
+				gSound = Object::PlaySoundA("./Resource Files/Sound/BG_Map2.wav", true);
 
 			sceneType = Play;
 			Player::GetInstance()->_life = StartLive;

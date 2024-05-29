@@ -20,6 +20,7 @@ public:
 		Cannon = 400,
 		Boss = 500,
 		Gunboss = 600,
+		BulletBoss = 700,
 	} _enemyType = Enemytype::Soldier;
 
 	OEnemy();

@@ -180,7 +180,8 @@ void OEnemy::StartExplode()
 
 void OEnemy::UpdateAnimation(float gameTime)
 {
-	_anim->NewAnimationByIndex(_enemyType + this->State + GetIndexGun());
+	int indexGun = State != Dying ? GetIndexGun() : 0;
+	_anim->NewAnimationByIndex(_enemyType + this->State + indexGun);
 	int h = _anim->GetCurrentFrameInfo().h;
 	_anim->SetPosition(D3DXVECTOR2(position.x, position.y + h / 2));
 	_anim->SetFlipFlag(!isFlip);

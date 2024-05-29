@@ -39,7 +39,6 @@ Map::Map(int level)
 	objectTag["S"] = OItem::S;
 	objectTag["F"] = OItem::F;
 	objectTag["L"] = OItem::L;
-	objectTag["T"] = OItem::T;
 	objectTag["Tank"] = OEnemy::Tank;
 	objectTag["Cannon"] = OEnemy::Cannon;
 	objectTag["Bridge"] = OWall::Brigde;
@@ -68,10 +67,12 @@ Map::~Map()
 	for (size_t i = 0; i < size; i++)
 	{
 		Object* obj = ListObject.at(i);
+		if (obj == NULL) continue;
 		if (obj->Tag == Object::Player) continue; //Không xóa player
 		delete ListObject.at(i);
 		obj = NULL;
 	}
+	ListObject.clear();
 }
 
 

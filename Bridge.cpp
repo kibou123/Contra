@@ -37,6 +37,13 @@ void Bridge::Update(float gameTime, Keyboard* key)
 	if (player->position.x + 16 > bound.left)
 	{
 		isExplode = true;
+		if (gSound != NULL)
+		{
+			Object::StopSound(gSound);
+			delete gSound;
+			gSound = NULL;
+		}
+		gSound = Object::PlaySoundA("./Resource Files/Sound/Destroy_Bridge.wav");
 	}
 	explode->AllowDraw = false;
 	if (isExplode && bound.left < bound.right)

@@ -145,6 +145,13 @@ void Player::SetHP(int hp)
 		Player::GetInstance()->_playerController->DeadState();
 		isImmortal = false;
 		immortalTime = 3;
+		if (gSound != NULL)
+		{
+			Object::StopSound(gSound);
+			delete gSound;
+			gSound = NULL;
+		}
+		gSound = Object::PlaySoundA("./Resource Files/Sound/Dead.wav");
 	}
 }
 

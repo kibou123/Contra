@@ -172,6 +172,9 @@
     <ClCompile Include="GunBoss.cpp">
       <Filter>Object\Enemy\Boss</Filter>
     </ClCompile>
+    <ClCompile Include="BulletBoss1.cpp">
+      <Filter>Object\Enemy\Boss</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="TinyXML\tinystr.h">
@@ -299,6 +302,9 @@
       <Filter>Object\Enemy\Boss</Filter>
     </ClInclude>
     <ClInclude Include="GunBoss.h">
+      <Filter>Object\Enemy\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletBoss1.h">
       <Filter>Object\Enemy\Boss</Filter>
     </ClInclude>
   </ItemGroup>

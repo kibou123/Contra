@@ -35,6 +35,7 @@ void ObjectManager::InitDT(int level)
 		map = NULL;
 	}
 	currBullet = 0;
+	mBulletList.clear();
 	map = new Map(level);
 }
 

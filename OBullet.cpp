@@ -133,7 +133,7 @@ void OBullet::OnCollision(Object* obj)
 	switch (obj->Tag)
 	{
 	case Object::Enemy:
-		if (_bulletType == EnemyBullet)
+		if (_bulletType == EnemyBullet || obj->type == OEnemy::BulletBoss)
 		{
 			break;
 		}
@@ -142,6 +142,7 @@ void OBullet::OnCollision(Object* obj)
 			this->State = Object::Dying;
 			velocity.x = 0;
 		}
+
 		obj->SetHP(obj->GetHP() - this->Damage);
 		obj->SetVelocityX(velocity.x);
 		break;
@@ -152,7 +153,7 @@ void OBullet::OnCollision(Object* obj)
 		}
 		velocity.x = 0;
 		this->State = Object::Dying;
-		obj->SetHP(obj->GetHP() - this->Damage);
+		obj->SetHP(this->Damage);
 		break;
 	default:
 		break;
