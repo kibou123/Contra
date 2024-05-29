@@ -95,7 +95,7 @@ void PlayerController::SitState()
 void PlayerController::SwimState()
 {
 	player->State = Object::Swimming;
-	player->SetBound(25, 16);
+	player->SetBound(16, 16);
 
 	if (key->IsKeyDown(Dik_DOWN))
 	{

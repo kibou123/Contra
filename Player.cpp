@@ -240,6 +240,6 @@ void Player::Render(Viewport* viewport)
 		_anim->Render(viewport);
 	}
 
-	GUI::GetInstance()->Render("LIFE: ", { 150, 200, 200, 235 });
-	GUI::GetInstance()->Render(_life, { 210, 200, 230, 235 });
+	//GUI::GetInstance()->Render("LIFE: ", { 150, 200, 200, 235 });
+	//GUI::GetInstance()->Render(_life, { 210, 200, 230, 235 });
 }

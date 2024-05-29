@@ -68,7 +68,7 @@ void SceneManager::Update(float gameTime, Keyboard* key)
 	sprite->SetPosition(D3DXVECTOR2(0, 0));
 
 	timedelay += gameTime;
-	float posx = 240;
+	float posx = GameWidth;
 	switch (sceneType)
 	{
 	case SceneManager::Intro:

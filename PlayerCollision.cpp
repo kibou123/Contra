@@ -52,6 +52,7 @@ void PlayerCollision::CheckCollisionWall(Object* _wall)
 	{
 	case OWall::Brigde:
 		_side.x = Collision::NONE;
+		break;
 	case OWall::Wall:
 		//
 		if (_side.x != Collision::NONE && wall->_kind == 1)//Leo len bo

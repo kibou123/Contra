@@ -125,6 +125,16 @@ RECT Viewport::GetBoundViewport1()
 //Update theo 1 đối tượng
 void Viewport::Update(float gameTime, Keyboard* key, D3DXVECTOR2 &posobject)
 {
+	//Tới chỗ boss
+	if (RectView.left > RectView.right - Width - 144)
+	{
+		RectView.left += gameTime * (Width / 2);//2s
+		if (RectView.left > RectView.right - Width)
+		{
+			RectView.left = RectView.right - Width;
+		}
+	}
+	 
 	//posPlayer
 	if (posobject.x - position_of_world.x <= 112)
 		position_of_world.x = posobject.x - 112;
@@ -148,9 +158,14 @@ void Viewport::Update(float gameTime, Keyboard* key, D3DXVECTOR2 &posobject)
 	else if (boundView.bottom <= RectView.bottom)
 		position_of_world.y = RectView.bottom + Height;
 
-	
+	//Thu màn 1
 	if (position_of_world.x > RectView.left)
 	{
 		RectView.left = position_of_world.x;
+	}
+	//Thu chiều cao màn 3
+	if (position_of_world.y - Height > RectView.bottom)
+	{
+		RectView.bottom = position_of_world.y - Height;
 	}
 }
